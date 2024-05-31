@@ -66,7 +66,7 @@ function Nav() {
           <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a className="btn bg-[#7330FF] text-white rounded-full">Sign In</a>
           {/* Profile */}
           <div className="dropdown dropdown-end ml-4">
             <div
