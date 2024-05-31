@@ -68,7 +68,7 @@ function Nav() {
         <div className="navbar-end">
           <a className="btn bg-[#7330FF] text-white rounded-full">Sign In</a>
           {/* Profile */}
-          <div className="dropdown dropdown-end ml-4">
+          <div className="dropdown dropdown-end ml-4 z-10">
             <div
               tabIndex={0}
               role="button"
@@ -86,13 +86,12 @@ function Nav() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+                <a  className="justify-between ">
+                  <span className="">User Name</span>
                 </a>
               </li>
               <li>
-                <a>Settings</a>
+                <a>Dashboard</a>
               </li>
               <li>
                 <a>Logout</a>

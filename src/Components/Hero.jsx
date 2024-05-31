@@ -24,11 +24,11 @@ function Hero() {
             Get Started
           </button>
         </div>
-        <div className="">
+        <div className="z-0">
           <Swiper
             className="mySwiper"
             autoplay={{
-              delay: 2500,
+              delay: 3000,
               disableOnInteraction: false,
             }}
             pagination={{
