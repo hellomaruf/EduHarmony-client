@@ -1,6 +1,41 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import google from "../assets/Images/google.png";
+import { useContext } from "react";
+import { AuthContext } from "../Services/AuthProvider";
+import toast from "react-hot-toast";
 function SignUp() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state || "/";
+  const { createUser, SignUpWithGoogle } = useContext(AuthContext);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name?.value;
+    const email = form.email?.value;
+    const password = form.password?.value;
+    console.log(name, email, password);
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        if (res.user) {
+          toast.success("Successfully Sign Up!!");
+          navigate(from);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleGoogleSignUp = () => {
+    SignUpWithGoogle().then((res) => {
+      if (res.user) {
+        toast.success("Successfully Sign Up!!");
+        navigate(from);
+      }
+    });
+  };
+
   return (
     <div>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -13,7 +48,11 @@ function SignUp() {
           </p>
         </div>
         <div className="max-w-md mx-auto">
-          <form action="#" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+          <form
+            onSubmit={handleSignUp}
+            action="#"
+            className="mx-auto mb-0 mt-8 max-w-md space-y-4"
+          >
             <div>
               <label className="sr-only">Name</label>
 
@@ -97,6 +136,7 @@ function SignUp() {
             </div>
             <input
               type="file"
+              name="photo"
               className="file-input file-input-ghost bg-gray-100 w-full rounded-full"
             />
 
@@ -120,9 +160,12 @@ function SignUp() {
               Sign Up
             </button>
           </form>
-          <button className="btn w-full mt-4 rounded-full">
+          <button
+            onClick={handleGoogleSignUp}
+            className="btn w-full mt-4 rounded-full"
+          >
             Sign Up with Google
-           <img src={google} className="w-6" alt=""  />
+            <img src={google} className="w-6" alt="" />
           </button>
         </div>
       </div>
