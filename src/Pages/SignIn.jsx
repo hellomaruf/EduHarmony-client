@@ -5,8 +5,7 @@ import { AuthContext } from "../Services/AuthProvider";
 import toast from "react-hot-toast";
 
 function SignIn() {
-  const { signInUser } = useContext(AuthContext);
-  console.log(signInUser);
+  const { signInUser, SignUpWithGoogle } = useContext(AuthContext);
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,6 +21,13 @@ function SignIn() {
       .catch((error) => {
         toast.error(error.message);
       });
+  };
+  const handleGoogleSignIn = () => {
+    SignUpWithGoogle().then((res) => {
+      if (res.user) {
+        toast.success("Successfully Sign In!!");
+      }
+    });
   };
   return (
     <div>
@@ -129,7 +135,10 @@ function SignIn() {
               Sign In
             </button>
           </form>
-          <button className="btn w-full mt-4 rounded-full">
+          <button
+            onClick={handleGoogleSignIn}
+            className="btn w-full mt-4 rounded-full"
+          >
             Sign Up with Google
             <img src={google} className="w-6" alt="" />
           </button>

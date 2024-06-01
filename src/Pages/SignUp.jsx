@@ -3,21 +3,28 @@ import google from "../assets/Images/google.png";
 import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import toast from "react-hot-toast";
+import { ImageUpload } from "../Utils";
 function SignUp() {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || "/";
-  const { createUser, SignUpWithGoogle } = useContext(AuthContext);
-  const handleSignUp = (e) => {
+  const { createUser, SignUpWithGoogle, updateUserProfile } =
+    useContext(AuthContext);
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name?.value;
     const email = form.email?.value;
+    const image = form.image.files[0];
+    const photo = await ImageUpload(image);
     const password = form.password?.value;
     console.log(name, email, password);
     createUser(email, password)
       .then((res) => {
         console.log(res.user);
+        updateUserProfile(name, photo).then((res) => {
+          console.log(res.user);
+        });
         if (res.user) {
           toast.success("Successfully Sign Up!!");
           navigate(from);
@@ -136,7 +143,7 @@ function SignUp() {
             </div>
             <input
               type="file"
-              name="photo"
+              name="image"
               className="file-input file-input-ghost bg-gray-100 w-full rounded-full"
             />
 
