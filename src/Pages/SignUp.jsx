@@ -18,13 +18,9 @@ function SignUp() {
     const image = form.image.files[0];
     const photo = await ImageUpload(image);
     const password = form.password?.value;
-    console.log(name, email, password);
     createUser(email, password)
       .then((res) => {
-        console.log(res.user);
-        updateUserProfile(name, photo).then((res) => {
-          console.log(res.user);
-        });
+        updateUserProfile(name, photo);
         if (res.user) {
           toast.success("Successfully Sign Up!!");
           navigate(from);
