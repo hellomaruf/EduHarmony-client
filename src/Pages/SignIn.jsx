@@ -1,7 +1,28 @@
 import { Link } from "react-router-dom";
 import google from "../assets/Images/google.png";
+import { useContext } from "react";
+import { AuthContext } from "../Services/AuthProvider";
+import toast from "react-hot-toast";
 
 function SignIn() {
+  const { signInUser } = useContext(AuthContext);
+  console.log(signInUser);
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    signInUser(email, password)
+      .then((res) => {
+        if (res.user) {
+          toast.success("Successfully Sign In!!");
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -14,7 +35,11 @@ function SignIn() {
           </p>
         </div>
         <div className=" max-w-md mx-auto">
-          <form action="#" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+          <form
+            onSubmit={handleSignIn}
+            action="#"
+            className="mx-auto mb-0 mt-8 max-w-md space-y-4"
+          >
             <div>
               <label htmlFor="email" className="sr-only">
                 Email
