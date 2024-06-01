@@ -1,6 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Services/AuthProvider";
 
 function Nav() {
+  const {name} = useContext(AuthContext)
+  console.log(name);
   const link = (
     <>
       <NavLink
@@ -31,7 +35,7 @@ function Nav() {
   );
   return (
     <div className="bg-base-100">
-      <div className="navbar max-w-7xl mx-auto">
+      <div className="navbar max-w-7xl mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -66,7 +70,7 @@ function Nav() {
           <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn bg-[#7330FF] text-white rounded-full">Sign In</a>
+          <Link to='/signIn' className="btn bg-[#7330FF] text-white rounded-full">Sign In</Link>
           {/* Profile */}
           <div className="dropdown dropdown-end ml-4 z-10">
             <div
