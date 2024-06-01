@@ -4,7 +4,10 @@ import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import toast from "react-hot-toast";
 import { ImageUpload } from "../Utils";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 function SignUp() {
+  const axiosPublic = useAxiosPublic();
+  console.log(axiosPublic);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || "/";
@@ -18,6 +21,21 @@ function SignUp() {
     const image = form.image.files[0];
     const photo = await ImageUpload(image);
     const password = form.password?.value;
+    const userInfo = {
+      name,
+      email,
+      photo,
+      role: "student",
+      status: "verified",
+    };
+    await axiosPublic
+      .post(`/users`, userInfo)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     createUser(email, password)
       .then((res) => {
         updateUserProfile(name, photo);

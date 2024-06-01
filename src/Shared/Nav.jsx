@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Services/AuthProvider";
-import blankProfile from '../assets/Images/blankProfile.webp'
+import blankProfile from "../assets/Images/blankProfile.webp";
+import toast from "react-hot-toast";
 
 function Nav() {
   const { user, logout, setUser } = useContext(AuthContext);
   const handleLogout = () => {
     logout();
     setUser("");
+    toast.success("Logout Successfully!!");
   };
   const link = (
     <>
@@ -74,12 +76,17 @@ function Nav() {
           <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
         <div className="navbar-end">
-          <Link
-            to="/signIn"
-            className="btn bg-[#7330FF] text-white rounded-full"
-          >
-            Sign In
-          </Link>
+          {user ? (
+            ""
+          ) : (
+            <Link
+              to="/signIn"
+              className="btn bg-[#7330FF] text-white rounded-full"
+            >
+              Sign In
+            </Link>
+          )}
+
           {/* Profile */}
           <div className="dropdown dropdown-end ml-4 z-10">
             <div
@@ -88,7 +95,10 @@ function Nav() {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src={user?.photoURL ? user?.photoURL : blankProfile} />
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src={user?.photoURL ? user?.photoURL : blankProfile}
+                />
               </div>
             </div>
             <ul

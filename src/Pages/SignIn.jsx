@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import google from "../assets/Images/google.png";
 import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
@@ -6,6 +6,9 @@ import toast from "react-hot-toast";
 
 function SignIn() {
   const { signInUser, SignUpWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state || "/";
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,6 +19,7 @@ function SignIn() {
       .then((res) => {
         if (res.user) {
           toast.success("Successfully Sign In!!");
+          navigate(from);
         }
       })
       .catch((error) => {
@@ -26,6 +30,7 @@ function SignIn() {
     SignUpWithGoogle().then((res) => {
       if (res.user) {
         toast.success("Successfully Sign In!!");
+        navigate(from);
       }
     });
   };
