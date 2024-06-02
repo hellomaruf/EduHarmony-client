@@ -5,6 +5,7 @@ import SignUp from "../Pages/SignUp";
 import SignIn from "../Pages/SignIn";
 import UsersFeedback from "../Components/UsersFeedback";
 import TeachOnEdu from "../Pages/TeachOnEdu";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -24,13 +25,17 @@ export const router = createBrowserRouter([
         element: <SignIn />,
       },
       {
-        path: '/feedback',
-        element:<UsersFeedback/>
+        path: "/feedback",
+        element: <UsersFeedback />,
       },
       {
-        path: '/teachOnEdu',
-        element:<TeachOnEdu/>
-      }
+        path: "/teachOnEdu",
+        element: (
+          <PrivateRoute>
+            <TeachOnEdu />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
