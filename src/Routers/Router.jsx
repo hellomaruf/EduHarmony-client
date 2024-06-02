@@ -6,6 +6,7 @@ import SignIn from "../Pages/SignIn";
 import UsersFeedback from "../Components/UsersFeedback";
 import TeachOnEdu from "../Pages/TeachOnEdu";
 import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../Layouts/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -37,5 +38,9 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
   },
 ]);

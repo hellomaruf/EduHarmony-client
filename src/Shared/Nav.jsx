@@ -110,7 +110,7 @@ function Nav() {
               </span>
 
               <li>
-                <a>Dashboard</a>
+                <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>

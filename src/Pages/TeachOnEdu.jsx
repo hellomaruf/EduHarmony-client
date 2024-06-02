@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useRole from "../Hooks/useRole";
 
 function TeachOnEdu() {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const [role] = useRole();
   const handleApplyTeaching = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -22,6 +24,7 @@ function TeachOnEdu() {
       category,
       photo: user?.photoURL,
       status: "request",
+      role,
     };
     console.log(applyTeachingInfo);
     await axiosSecure
