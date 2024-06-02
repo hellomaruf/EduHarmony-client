@@ -5,15 +5,17 @@ import { AuthContext } from "../Services/AuthProvider";
 import toast from "react-hot-toast";
 import { ImageUpload } from "../Utils";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { ImSpinner9 } from "react-icons/im";
 function SignUp() {
+  const { loading, setLoading } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
-  console.log(axiosPublic);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || "/";
   const { createUser, SignUpWithGoogle, updateUserProfile } =
     useContext(AuthContext);
   const handleSignUp = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const form = e.target;
     const name = form.name?.value;
@@ -41,6 +43,7 @@ function SignUp() {
         updateUserProfile(name, photo);
         if (res.user) {
           toast.success("Successfully Sign Up!!");
+          setLoading(false);
           navigate(from);
         }
       })
@@ -178,7 +181,11 @@ function SignUp() {
               type="submit"
               className="inline-block w-full  bg-[#7330FF] rounded-full px-5 py-3 text-sm font-medium text-white"
             >
-              Sign Up
+              {loading ? (
+                <ImSpinner9 className="animate-spin mx-auto  " />
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </form>
           <button

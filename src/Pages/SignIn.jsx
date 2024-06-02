@@ -1,15 +1,18 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import google from "../assets/Images/google.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import toast from "react-hot-toast";
+import { ImSpinner9 } from "react-icons/im";
 
 function SignIn() {
+  const [loading, setLoading] = useState(false);
   const { signInUser, SignUpWithGoogle } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || "/";
   const handleSignIn = (e) => {
+    setLoading(true);
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -19,6 +22,7 @@ function SignIn() {
       .then((res) => {
         if (res.user) {
           toast.success("Successfully Sign In!!");
+          setLoading(false);
           navigate(from);
         }
       })
@@ -30,6 +34,7 @@ function SignIn() {
     SignUpWithGoogle().then((res) => {
       if (res.user) {
         toast.success("Successfully Sign In!!");
+        setLoading(false);
         navigate(from);
       }
     });
@@ -137,7 +142,11 @@ function SignIn() {
               type="submit"
               className="inline-block w-full  bg-[#7330FF] rounded-full px-5 py-3 text-sm font-medium text-white"
             >
-              Sign In
+              {loading ? (
+                <ImSpinner9 className="animate-spin mx-auto " />
+              ) : (
+                "Sign In"
+              )}
             </button>
           </form>
           <button

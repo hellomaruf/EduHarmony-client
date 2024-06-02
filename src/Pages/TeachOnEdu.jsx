@@ -2,12 +2,15 @@ import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import useRole from "../Hooks/useRole";
+import toast from "react-hot-toast";
+
 
 function TeachOnEdu() {
-  const { user } = useContext(AuthContext);
+  const { user, setLoading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [role] = useRole();
   const handleApplyTeaching = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -31,6 +34,10 @@ function TeachOnEdu() {
       .post("/applyTeaching", applyTeachingInfo)
       .then((res) => {
         console.log(res.data);
+        if (res.data.insertedId) {
+          toast.success("Request Successfull Wait for Admin Approval!");
+          setLoading(false);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -125,9 +132,9 @@ function TeachOnEdu() {
 
             <div className="">
               <input
-                className="bg-[#7330FF] hover:bg-[#8851ff] btn text-white   py-2 font-bold  rounded-lg"
+                className="bg-[#7330FF] rounded-full hover:bg-[#8851ff] btn text-white   py-2 font-bold"
                 type="submit"
-                value="Apply for Teaching"
+                value={"Apply for Teach"}
               />
             </div>
           </div>

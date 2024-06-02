@@ -1,9 +1,52 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Services/AuthProvider";
+import { ImageUpload } from "../../../Utils";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "./../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 function AddClass() {
   const { user } = useContext(AuthContext);
-  const handleAddClass = () => {};
+  const axiosSecure = useAxiosSecure();
+
+  const mutation = useMutation({
+    mutationFn: (NewClass) => {
+      return axiosSecure.post("/class", NewClass);
+    },
+    onSuccess: (data) => {
+      // Boom baby!
+      console.log(data);
+      Swal.fire({
+        icon: "success",
+        title: "Please wait for admin approval",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+  });
+  const handleAddClass = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const title = form.title.value;
+    const price = parseInt(form.price.value);
+    const description = form.description.value;
+    const image = form.image.files[0];
+    const photo = await ImageUpload(image);
+    const classInfo = {
+      name,
+      email,
+      title,
+      price,
+      description,
+      photo,
+      status: "pending",
+    };
+    console.log(classInfo);
+    mutation.mutate(classInfo);
+  };
+
   return (
     <div className=" mr-8 h-[600px] flex items-center justify-center">
       <form
@@ -33,7 +76,7 @@ function AddClass() {
               </label>
               <input
                 required
-                name="bookName"
+                name="email"
                 defaultValue={user?.email}
                 disabled
                 type="text"

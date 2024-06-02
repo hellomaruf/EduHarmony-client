@@ -2,11 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Spinner from "../../../Utils/Spinner";
 import toast from "react-hot-toast";
-import { useState } from "react";
 
 function TeacherRequest() {
   const axiosSecure = useAxiosSecure();
-  const [isDisabled, setIsDisabled] = useState(false);
+  //   const [isDisabled, setIsDisabled] = useState(false);
   const {
     data: teacherRequest,
     isLoading,
@@ -20,7 +19,7 @@ function TeacherRequest() {
   });
 
   // Approved for teacher
-  const handleTeacherApproved = async (email) => {
+  const handleTeacherApproved = async (email, id) => {
     await axiosSecure
       .patch(`/teacherApproved/${email}`)
       .then((res) => {
@@ -33,7 +32,16 @@ function TeacherRequest() {
       .catch((error) => {
         console.log(error);
       });
-    setIsDisabled(true);
+
+    await axiosSecure
+      .patch(`/teacherApprovedRequest/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        refetch();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   // Reject teacher request
@@ -50,8 +58,8 @@ function TeacherRequest() {
       .catch((error) => {
         console.log(error);
       });
-    setIsDisabled(true);
   };
+  console.log(teacherRequest);
   return (
     <div>
       <div className="overflow-x-auto">
@@ -121,8 +129,10 @@ function TeacherRequest() {
                   <td>
                     <th className="flex font-normal ">
                       <button
-                        disabled={isDisabled}
-                        onClick={() => handleTeacherApproved(item?.email)}
+                        disabled={item?.role === "teacher"}
+                        onClick={() =>
+                          handleTeacherApproved(item?.email, item?._id)
+                        }
                         className="btn btn-sm rounded-full bg-green-100 text-green-600"
                       >
                         Approved
@@ -132,7 +142,7 @@ function TeacherRequest() {
                   <td>
                     <th className="flex font-normal ">
                       <button
-                        disabled={isDisabled}
+                        disabled={item?.role === "teacher"}
                         onClick={() => handleTeacherReject(item?._id)}
                         className="btn btn-sm rounded-full bg-red-100 text-red-600"
                       >
