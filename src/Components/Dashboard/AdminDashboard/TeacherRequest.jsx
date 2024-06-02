@@ -1,23 +1,48 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Spinner from "../../../Utils/Spinner";
+import toast from "react-hot-toast";
 
 function TeacherRequest() {
   const axiosSecure = useAxiosSecure();
-  const { data: teacherRequest, isLoading } = useQuery({
+  const {
+    data: teacherRequest,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: "teacherRequest",
     queryFn: async () => {
       const { data } = await axiosSecure.get("/teacherRequest");
       return data;
     },
   });
-    
+
   // Approved for teacher
   const handleTeacherApproved = async (email) => {
     await axiosSecure
       .patch(`/teacherApproved/${email}`)
       .then((res) => {
         console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          toast.success("Approve Successfully!!");
+          refetch();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // Reject teacher request
+  const handleTeacherReject = async (id) => {
+    await axiosSecure
+      .patch(`/teacherReject/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0) {
+          toast.success("Reject Successfully!!");
+          refetch();
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -78,7 +103,13 @@ function TeacherRequest() {
                   </td>
                   <td>
                     <th className="flex font-normal ">
-                      <span className="badge badge-secondary badge-outline">
+                      <span
+                        className={
+                          item?.status === "pending"
+                            ? "badge badge-warning text-white"
+                            : "badge badge-error text-white"
+                        }
+                      >
                         {item?.status}
                       </span>
                     </th>
@@ -95,7 +126,10 @@ function TeacherRequest() {
                   </td>
                   <td>
                     <th className="flex font-normal ">
-                      <button className="btn btn-sm rounded-full bg-red-100 text-red-600">
+                      <button
+                        onClick={() => handleTeacherReject(item?._id)}
+                        className="btn btn-sm rounded-full bg-red-100 text-red-600"
+                      >
                         Reject
                       </button>
                     </th>
