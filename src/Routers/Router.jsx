@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import SignUp from "../Pages/SignUp";
 import SignIn from "../Pages/SignIn";
 import UsersFeedback from "../Components/UsersFeedback";
+import TeachOnEdu from "../Pages/TeachOnEdu";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: '/feedback',
         element:<UsersFeedback/>
+      },
+      {
+        path: '/teachOnEdu',
+        element:<TeachOnEdu/>
       }
     ],
   },

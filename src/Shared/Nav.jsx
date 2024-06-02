@@ -30,7 +30,7 @@ function Nav() {
         All Classes
       </NavLink>
       <NavLink
-        to="/teachOnEduHarmory"
+        to="/teachOnEdu"
         className={({ isActive }) =>
           isActive ? "text-[#7330FF] mx-3" : " mx-3"
         }
