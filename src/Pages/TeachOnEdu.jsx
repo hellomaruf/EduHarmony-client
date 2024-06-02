@@ -23,7 +23,7 @@ function TeachOnEdu() {
       title,
       category,
       photo: user?.photoURL,
-      status: "request",
+      status: "pending",
       role,
     };
     console.log(applyTeachingInfo);

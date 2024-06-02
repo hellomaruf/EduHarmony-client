@@ -8,6 +8,7 @@ import TeachOnEdu from "../Pages/TeachOnEdu";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Users from "../Components/Dashboard/AdminDashboard/Users";
+import TeacherRequest from "../Components/Dashboard/AdminDashboard/TeacherRequest";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
         path: "users",
         element: <Users />,
       },
+      {
+        path: 'teacherRequest',
+        element:<TeacherRequest/>
+      }
     ],
   },
 ]);

@@ -10,7 +10,7 @@ function AdminMenu() {
       <MenuItem
         icon={LuGitPullRequestDraft}
         label="Teacher Request"
-        address="teacher-request"
+        address="teacherRequest"
       />
       <MenuItem icon={LuUsers2} label="Users" address="users" />
       <MenuItem
