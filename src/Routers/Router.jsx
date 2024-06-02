@@ -7,6 +7,7 @@ import UsersFeedback from "../Components/UsersFeedback";
 import TeachOnEdu from "../Pages/TeachOnEdu";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
+import Users from "../Components/Dashboard/AdminDashboard/Users";
 
 export const router = createBrowserRouter([
   {
@@ -42,5 +43,12 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    // admin dashboard menu
+    children: [
+      {
+        path: "users",
+        element: <Users />,
+      },
+    ],
   },
 ]);
