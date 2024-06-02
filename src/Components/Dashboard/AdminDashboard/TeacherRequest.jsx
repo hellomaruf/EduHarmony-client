@@ -11,7 +11,18 @@ function TeacherRequest() {
       return data;
     },
   });
-  console.log(teacherRequest);
+    
+  // Approved for teacher
+  const handleTeacherApproved = async (email) => {
+    await axiosSecure
+      .patch(`/teacherApproved/${email}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -32,10 +43,8 @@ function TeacherRequest() {
                   Category
                 </th>
                 <th className="text-base text-[#7330ff] font-medium">Status</th>
-                <th className="text-base text-[#7330ff] font-medium">
-                  Approved{" "}
-                </th>
-                <th className="text-base text-[#7330ff] font-medium">Reject</th>
+                <th className="text-base text-[#7330ff] font-medium"></th>
+                <th className="text-base text-[#7330ff] font-medium"></th>
               </tr>
             </thead>
             <tbody>
@@ -76,7 +85,10 @@ function TeacherRequest() {
                   </td>
                   <td>
                     <th className="flex font-normal ">
-                      <button className="btn btn-sm rounded-full bg-green-100 text-green-600">
+                      <button
+                        onClick={() => handleTeacherApproved(item?.email)}
+                        className="btn btn-sm rounded-full bg-green-100 text-green-600"
+                      >
                         Approved
                       </button>
                     </th>
