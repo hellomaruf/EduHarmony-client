@@ -9,7 +9,7 @@ function TeachersMenu() {
         <MenuItem
         icon={MdOutlineAddToPhotos}
         label="Add Class"
-        address="add-class"
+        address="addClass"
       />
       <MenuItem
         icon={BiBookmarkAlt}

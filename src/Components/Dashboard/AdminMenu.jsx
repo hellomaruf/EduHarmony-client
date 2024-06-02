@@ -20,7 +20,7 @@ function AdminMenu() {
       />
       <MenuItem
         icon={RiAccountCircleLine}
-        label="profile"
+        label="Profile"
         address="profile"
       />
     </div>
