@@ -33,7 +33,7 @@ function Users() {
       }
     });
   };
-  console.log(users?.role);
+
   return (
     <div>
       <div className="overflow-x-auto">
