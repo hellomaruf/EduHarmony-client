@@ -6,6 +6,7 @@ import { AuthContext } from "../../Services/AuthProvider";
 import useRole from "../../Hooks/useRole";
 import StudentMenu from "./StudentMenu";
 import AdminMenu from "./AdminMenu";
+import TeachersMenu from "./TeachersMenu";
 
 const Sidebar = () => {
   const { logout } = useContext(AuthContext);
@@ -69,6 +70,7 @@ const Sidebar = () => {
              
               {role === "student" && <StudentMenu />}
               {role === "admin" && <AdminMenu />}
+              {role === "teacher" && <TeachersMenu />}
             </nav>
           </div>
         </div>
