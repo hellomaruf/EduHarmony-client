@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Services/AuthProvider";
 import useRole from "../../Hooks/useRole";
 import StudentMenu from "./StudentMenu";
+import AdminMenu from "./AdminMenu";
 
 const Sidebar = () => {
   const { logout } = useContext(AuthContext);
@@ -65,8 +66,9 @@ const Sidebar = () => {
 
             {/*  Menu Items */}
             <nav>
-              {/* Statistics */}
+             
               {role === "student" && <StudentMenu />}
+              {role === "admin" && <AdminMenu />}
             </nav>
           </div>
         </div>
