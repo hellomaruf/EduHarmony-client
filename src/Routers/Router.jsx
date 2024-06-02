@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Users from "../Components/Dashboard/AdminDashboard/Users";
 import TeacherRequest from "../Components/Dashboard/AdminDashboard/TeacherRequest";
+import Profile from "../Components/Dashboard/AdminDashboard/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -51,9 +52,13 @@ export const router = createBrowserRouter([
         element: <Users />,
       },
       {
-        path: 'teacherRequest',
-        element:<TeacherRequest/>
-      }
+        path: "teacherRequest",
+        element: <TeacherRequest />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
     ],
   },
 ]);

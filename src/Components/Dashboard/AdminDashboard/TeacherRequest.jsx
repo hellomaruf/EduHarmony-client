@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Spinner from "../../../Utils/Spinner";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 function TeacherRequest() {
   const axiosSecure = useAxiosSecure();
+  const [isDisabled, setIsDisabled] = useState(false);
   const {
     data: teacherRequest,
     isLoading,
@@ -31,6 +33,7 @@ function TeacherRequest() {
       .catch((error) => {
         console.log(error);
       });
+    setIsDisabled(true);
   };
 
   // Reject teacher request
@@ -47,6 +50,7 @@ function TeacherRequest() {
       .catch((error) => {
         console.log(error);
       });
+    setIsDisabled(true);
   };
   return (
     <div>
@@ -117,6 +121,7 @@ function TeacherRequest() {
                   <td>
                     <th className="flex font-normal ">
                       <button
+                        disabled={isDisabled}
                         onClick={() => handleTeacherApproved(item?.email)}
                         className="btn btn-sm rounded-full bg-green-100 text-green-600"
                       >
@@ -127,6 +132,7 @@ function TeacherRequest() {
                   <td>
                     <th className="flex font-normal ">
                       <button
+                        disabled={isDisabled}
                         onClick={() => handleTeacherReject(item?._id)}
                         className="btn btn-sm rounded-full bg-red-100 text-red-600"
                       >
