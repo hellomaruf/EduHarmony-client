@@ -15,6 +15,7 @@ import AllClasses from "../Components/Dashboard/AdminDashboard/AllClasses";
 import MyClass from "../Components/Dashboard/TeacherDashboard/MyClass";
 import UpdateClass from "../Components/Dashboard/TeacherDashboard/UpdateClass";
 import AllClass from "../Pages/AllClass";
+import ClassDetails from "../Components/Dashboard/StudentDashboard/ClassDetails";
 
 export const router = createBrowserRouter([
   {
@@ -39,7 +40,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/allClass",
-        element: <AllClass/>,
+        element: <AllClass />,
+      },
+      {
+        path: "/classDetails/:id",
+        element: <PrivateRoute><ClassDetails /></PrivateRoute>,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/classDetails/${params?.id}`),
       },
       {
         path: "/teachOnEdu",
