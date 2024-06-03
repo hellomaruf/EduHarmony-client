@@ -12,6 +12,7 @@ import TeacherRequest from "../Components/Dashboard/AdminDashboard/TeacherReques
 import Profile from "../Components/Dashboard/AdminDashboard/Profile";
 import AddClass from "../Components/Dashboard/TeacherDashboard/AddClass";
 import AllClasses from "../Components/Dashboard/AdminDashboard/AllClasses";
+import MyClass from "../Components/Dashboard/TeacherDashboard/MyClass";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "addClass",
         element: <AddClass />,
+      },
+      {
+        path: "myClass",
+        element: <MyClass />,
       },
     ],
   },

@@ -7,7 +7,7 @@ import { ImSpinner9 } from "react-icons/im";
 
 function SignIn() {
   const [loading, setLoading] = useState(false);
-  const { signInUser, SignUpWithGoogle } = useContext(AuthContext);
+  const { signInUser, SignUpWithGoogle, saveUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || "/";
@@ -35,6 +35,7 @@ function SignIn() {
       if (res.user) {
         toast.success("Successfully Sign In!!");
         setLoading(false);
+        saveUser(res.user)
         navigate(from);
       }
     });

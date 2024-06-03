@@ -12,7 +12,7 @@ function SignUp() {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || "/";
-  const { createUser, SignUpWithGoogle, updateUserProfile } =
+  const { createUser, SignUpWithGoogle, updateUserProfile, saveUser } =
     useContext(AuthContext);
   const handleSignUp = async (e) => {
     setLoading(true);
@@ -44,6 +44,7 @@ function SignUp() {
         if (res.user) {
           toast.success("Successfully Sign Up!!");
           setLoading(false);
+          saveUser(res.user);
           navigate(from);
         }
       })
@@ -55,6 +56,7 @@ function SignUp() {
     SignUpWithGoogle().then((res) => {
       if (res.user) {
         toast.success("Successfully Sign Up!!");
+        saveUser(res.user);
         navigate(from);
       }
     });

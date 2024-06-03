@@ -137,7 +137,7 @@ function AddClass() {
               <input
                 className="bg-[#7330ff] rounded-full hover:bg-[#8b56ff] btn text-white   py-2 font-bold"
                 type="submit"
-                value="Add Book"
+                value="Add Class"
               />
             </div>
           </div>

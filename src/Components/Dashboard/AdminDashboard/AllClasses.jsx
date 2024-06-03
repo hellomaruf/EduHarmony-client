@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 function AllClasses() {
   const axiosSecure = useAxiosSecure();
-
   const {
     data: classes,
     isLoading,
@@ -96,7 +95,7 @@ function AllClasses() {
                     </button>
                   </td>
                   <td>
-                    <button className="btn btn-sm rounded-full bg-[#7330FF] text-white">
+                          <button disabled={ item?.status === 'pending' && 'rejected'} className="btn btn-sm rounded-full bg-[#7330FF] text-white">
                       See Progress
                     </button>
                   </td>

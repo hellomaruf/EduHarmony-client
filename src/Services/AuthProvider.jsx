@@ -73,7 +73,7 @@ function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("current user---->", currentUser);
       setUser(currentUser);
-      saveUser(currentUser);
+      // saveUser(currentUser);
       setLoading(false);
     });
     return () => {
@@ -89,7 +89,8 @@ function AuthProvider({ children }) {
     signInUser,
     updateUserProfile,
     logout,
-    setLoading
+    setLoading,
+    saveUser
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
