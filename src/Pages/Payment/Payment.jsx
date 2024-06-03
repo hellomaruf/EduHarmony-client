@@ -5,11 +5,7 @@ import Lottie from "lottie-react";
 import Cart from "../../assets/Images/payCart.json";
 
 function Payment() {
-  // const defaultOptions = {
-  //   loop: true,
-  //   autoplay: true,
-  //   animationData: Cart,
-  // };
+ 
 
   const stripePromise = loadStripe(import.meta.env.VITE_GATEWAY_API_KEY);
   return (

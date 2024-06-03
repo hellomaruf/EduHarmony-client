@@ -53,9 +53,12 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/classDetails/${params?.id}`),
       },
+
       {
-        path: "/payment",
+        path: "/payment/:id",
         element: <Payment />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/payment/${params?.id}`),
       },
       {
         path: "/teachOnEdu",

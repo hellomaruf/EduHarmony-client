@@ -34,7 +34,7 @@ function ClassDetails() {
               <p className=" font-semibold text-[#7330FF] text-3xl mt-2">
                 ${classData?.price}
               </p>
-              <Link to='/payment'  className="btn rounded-full mt-6 bg-[#7330FF] hover:bg-[#8750ff] text-white">
+              <Link to={`/payment/${classData?._id}`}  className="btn rounded-full mt-6 bg-[#7330FF] hover:bg-[#8750ff] text-white">
                 Pay ${classData?.price}
               </Link>
             </div>
