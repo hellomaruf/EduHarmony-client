@@ -55,6 +55,8 @@ function AddClass() {
         action=""
         className="container flex flex-col mx-auto space-y-12"
       >
+        <h2 className="text-3xl  font-semibold">Add Your Class</h2>
+
         <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-2xl shadow-sm  border-2 bg-base-100 border-[#7330ff]">
           <div className="grid grid-cols-6 gap-4 col-span-full ">
             <div className="col-span-full sm:col-span-3">
