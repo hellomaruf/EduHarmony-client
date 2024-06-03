@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 function AllClasses() {
   const axiosSecure = useAxiosSecure();
+
   const {
     data: classes,
     isLoading,
@@ -16,16 +17,27 @@ function AllClasses() {
       return data;
     },
   });
-  console.log(classes);
 
   const handleApproved = async (item) => {
-    console.log(item);
     await axiosSecure
       .patch(`/approvedClasses/${item?._id}`)
       .then((res) => {
-        console.log(res.data);
         if (res.data.modifiedCount > 0) {
           toast.success("Approve Successfully!!");
+          refetch();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleRejected = async (item) => {
+    await axiosSecure
+      .patch(`/rejectClasses/${item?._id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          toast.success("Rejected Successfully!!");
           refetch();
         }
       })
@@ -76,7 +88,10 @@ function AllClasses() {
                     </button>
                   </td>
                   <td>
-                    <button className="btn btn-sm rounded-full bg-red-100 text-red-600">
+                    <button
+                      onClick={() => handleRejected(item)}
+                      className="btn btn-sm rounded-full bg-red-100 text-red-600"
+                    >
                       Reject
                     </button>
                   </td>
