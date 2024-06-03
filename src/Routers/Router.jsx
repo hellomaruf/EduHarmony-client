@@ -14,6 +14,7 @@ import AddClass from "../Components/Dashboard/TeacherDashboard/AddClass";
 import AllClasses from "../Components/Dashboard/AdminDashboard/AllClasses";
 import MyClass from "../Components/Dashboard/TeacherDashboard/MyClass";
 import UpdateClass from "../Components/Dashboard/TeacherDashboard/UpdateClass";
+import AllClass from "../Pages/AllClass";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/feedback",
         element: <UsersFeedback />,
+      },
+      {
+        path: "/allClass",
+        element: <AllClass/>,
       },
       {
         path: "/teachOnEdu",

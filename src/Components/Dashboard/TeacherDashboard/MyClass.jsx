@@ -6,19 +6,49 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Services/AuthProvider";
 import Spinner from "../../../Utils/Spinner";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function MyClass() {
   //   const { classes } = useClasses();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
-  const { data: classes, isLoading } = useQuery({
+  const {
+    data: classes,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: "myClass",
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/myClasses/${user?.email}`);
       return data;
     },
   });
-  console.log(classes);
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "If you want to delete then click Delete button!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#7330ff",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete ",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axiosSecure.delete(`/deleteClass/${id}`).then((res) => {
+          if (res.data) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -93,6 +123,7 @@ function MyClass() {
                         </Link>
 
                         <a
+                          onClick={() => handleDelete(item?._id)}
                           className="inline-block rounded-full border border-indigo-600 p-3 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
                           href="#"
                         >

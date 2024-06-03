@@ -22,7 +22,7 @@ function Nav() {
         Home
       </NavLink>
       <NavLink
-        to="/allClasses"
+        to="/allClass"
         className={({ isActive }) =>
           isActive ? "text-[#7330FF] mx-3" : " mx-3"
         }
@@ -81,7 +81,7 @@ function Nav() {
           ) : (
             <Link
               to="/signIn"
-              className="btn bg-[#7330FF] text-white rounded-full"
+              className="btn bg-[#7330FF] hover:bg-[#905cff] text-white rounded-full"
             >
               Sign In
             </Link>

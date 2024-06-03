@@ -19,7 +19,7 @@ function BecomeTeacher() {
             aspiring teachers to apply their learning in real classroom
             settings.
           </p>
-          <Link to='/teachOnEdu' className="btn rounded-full bg-[#7330FF] text-white">
+          <Link to='/teachOnEdu' className="btn rounded-full bg-[#7330FF] hover:bg-[#905cff] text-white">
             Become a Teacher
           </Link>
         </div>

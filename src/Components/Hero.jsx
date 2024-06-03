@@ -3,7 +3,7 @@ import img1 from "../assets/Images/EduHero.png";
 import img2 from "../assets/Images/EduHero1.png";
 // Import Swiper styles
 import "swiper/css";
-import 'swiper/css/pagination';
+import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 function Hero() {
   return (
@@ -15,12 +15,12 @@ function Hero() {
             Management: The Perfect Partnership.
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit
-            illum eaque porro, voluptatibus deleniti eius nobis? Veritatis autem
-            quisquam atque in voluptates molestiae, quo, provident aut illum
-            repellendus sapiente recusandae!
+            At EduHarmony, we are committed to transforming the way you learn. Our
+            state-of-the-art online class website offers an immersive and
+            interactive learning experience designed to meet the needs of
+            learners worldwide. Whether youre looking to develop new skills.
           </p>
-          <button className="text-white bg-[#7330FF] btn rounded-full">
+          <button className="text-white bg-[#7330FF] hover:bg-[#905cff] btn rounded-full">
             Get Started
           </button>
         </div>
