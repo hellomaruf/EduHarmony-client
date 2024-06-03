@@ -44,7 +44,7 @@ function Users() {
             {/* head */}
             <thead>
               <tr>
-                <th className="text-base text-[#7330ff] font-medium">Photo</th>
+                <th className="text-base text-[#7330ff] font-medium"></th>
                 <th className="text-base text-[#7330ff] font-medium">Name</th>
                 <th className="text-base text-[#7330ff] font-medium">Email</th>
                 <th className="text-base text-[#7330ff] font-medium">

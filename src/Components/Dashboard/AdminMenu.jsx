@@ -16,7 +16,7 @@ function AdminMenu() {
       <MenuItem
         icon={TiThSmall}
         label="All Classes"
-        address="all-classes"
+        address="adminAllClasses"
       />
       <MenuItem
         icon={RiAccountCircleLine}

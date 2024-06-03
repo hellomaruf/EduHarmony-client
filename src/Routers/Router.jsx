@@ -11,6 +11,7 @@ import Users from "../Components/Dashboard/AdminDashboard/Users";
 import TeacherRequest from "../Components/Dashboard/AdminDashboard/TeacherRequest";
 import Profile from "../Components/Dashboard/AdminDashboard/Profile";
 import AddClass from "../Components/Dashboard/TeacherDashboard/AddClass";
+import AllClasses from "../Components/Dashboard/AdminDashboard/AllClasses";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "adminAllClasses",
+        element: <AllClasses />,
       },
 
       // teacher dashboard menu
