@@ -13,6 +13,7 @@ import Profile from "../Components/Dashboard/AdminDashboard/Profile";
 import AddClass from "../Components/Dashboard/TeacherDashboard/AddClass";
 import AllClasses from "../Components/Dashboard/AdminDashboard/AllClasses";
 import MyClass from "../Components/Dashboard/TeacherDashboard/MyClass";
+import UpdateClass from "../Components/Dashboard/TeacherDashboard/UpdateClass";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,12 @@ export const router = createBrowserRouter([
       {
         path: "myClass",
         element: <MyClass />,
+      },
+      {
+        path: "myClass/updateClass/:id",
+        element: <UpdateClass />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/update/${params?.id}`),
       },
     ],
   },

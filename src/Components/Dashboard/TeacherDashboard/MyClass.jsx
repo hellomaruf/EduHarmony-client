@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../../../Services/AuthProvider";
 import Spinner from "../../../Utils/Spinner";
+import { Link } from "react-router-dom";
 
 function MyClass() {
   //   const { classes } = useClasses();
@@ -81,14 +82,15 @@ function MyClass() {
                         {item?.status}
                       </div>
                       <div className=" space-x-3 text-white">
-                        <label
-                          htmlFor="my_modal_6"
+                        <Link
+                          //   htmlFor="my_modal_6"
                           //   onClick={() => handleUpdate(item)}
+                          to={`updateClass/${item?._id}`}
                           className="inline-block rounded-full border border-indigo-600 bg-indigo-600 p-3 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
                           href="#"
                         >
                           <FiEdit />
-                        </label>
+                        </Link>
 
                         <a
                           className="inline-block rounded-full border border-indigo-600 p-3 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
@@ -119,7 +121,7 @@ function MyClass() {
               </div>
 
               {/* Modal */}
-              <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+              {/* <input type="checkbox" id="my_modal_6" className="modal-toggle" />
               <div className="modal" role="dialog">
                 <div className="modal-box">
                   <h3 className="font-bold text-xl mb-4">Update your Class!</h3>
@@ -170,7 +172,7 @@ function MyClass() {
                     </label>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </a>
           ))}
         </div>
