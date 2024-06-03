@@ -81,12 +81,14 @@ function MyClass() {
                         {item?.status}
                       </div>
                       <div className=" space-x-3 text-white">
-                        <a
+                        <label
+                          htmlFor="my_modal_6"
+                          //   onClick={() => handleUpdate(item)}
                           className="inline-block rounded-full border border-indigo-600 bg-indigo-600 p-3 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
                           href="#"
                         >
                           <FiEdit />
-                        </a>
+                        </label>
 
                         <a
                           className="inline-block rounded-full border border-indigo-600 p-3 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
@@ -113,6 +115,60 @@ function MyClass() {
                   <button className="btn w-full rounded-full text-white bg-[#7330ff] hover:bg-[#8c57ff] ">
                     See Details
                   </button>
+                </div>
+              </div>
+
+              {/* Modal */}
+              <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+              <div className="modal" role="dialog">
+                <div className="modal-box">
+                  <h3 className="font-bold text-xl mb-4">Update your Class!</h3>
+
+                  <div className="mt-3">
+                    <label htmlFor="firstname" className="text-lg font-medium">
+                      Title
+                    </label>
+                    <input
+                      required
+                      name="title"
+                      defaultValue={item?.title}
+                      type="text"
+                      placeholder="Enter a Title"
+                      className="w-full focus:bg-base-200 focus:border-[#7330ff]  rounded-md  p-2 outline-none border"
+                    />
+                  </div>
+                  <div className="mt-3">
+                    <label htmlFor="firstname" className="text-lg font-medium">
+                      Price
+                    </label>
+                    <input
+                      required
+                      name="price"
+                      defaultValue={item?.price}
+                      type="number"
+                      placeholder="Enter Price"
+                      className="w-full focus:bg-base-200 focus:border-[#7330ff]  rounded-md  p-2 outline-none border"
+                    />
+                  </div>
+                  <input
+                    type="file"
+                    name="image"
+                    className="file-input mt-4 file-input-ghost bg-gray-100 rounded-full"
+                  />
+                  <div className="modal-action">
+                    <label
+                      htmlFor="my_modal_6"
+                      className="btn bg-red-500 hover:bg-red-400 text-white rounded-full"
+                    >
+                      Cancel
+                    </label>
+                    <label
+                      htmlFor="my_modal_6"
+                      className="btn bg-[#7330ff] hover:bg-[#8c57ff] text-white rounded-full"
+                    >
+                      Update
+                    </label>
+                  </div>
                 </div>
               </div>
             </a>
