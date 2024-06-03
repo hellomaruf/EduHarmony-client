@@ -68,7 +68,7 @@ function Nav() {
             </ul>
           </div>
           <div className="flex items-center justify-center gap-2">
-            <i className="ri-graduation-cap-fill text-2xl text-[#7330FF]"></i>
+            <i className="ri-graduation-cap-fill text-3xl text-[#7330FF]"></i>
             <a className=" text-2xl font-semibold">EduHarmony</a>
           </div>
         </div>

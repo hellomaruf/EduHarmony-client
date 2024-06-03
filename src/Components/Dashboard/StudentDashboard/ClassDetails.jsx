@@ -1,9 +1,8 @@
 import { RiAccountCircleLine } from "react-icons/ri";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 function ClassDetails() {
   const classData = useLoaderData();
-  console.log(classData);
   return (
     <div className="max-w-7xl mx-auto my-8">
       <div className="group block">
@@ -35,9 +34,9 @@ function ClassDetails() {
               <p className=" font-semibold text-[#7330FF] text-3xl mt-2">
                 ${classData?.price}
               </p>
-              <button className="btn rounded-full mt-6 bg-[#7330FF] hover:bg-[#8750ff] text-white">
+              <Link to='/payment'  className="btn rounded-full mt-6 bg-[#7330FF] hover:bg-[#8750ff] text-white">
                 Pay ${classData?.price}
-              </button>
+              </Link>
             </div>
           </div>
           <div className=" col-span-1 bg-gradient-to-r from-[#7330FF] to-[#5617e0] rounded-xl p-6 my-6">
