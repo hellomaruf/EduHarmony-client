@@ -8,7 +8,7 @@ function BecomeTeacher() {
           <img className="max-w-96 rounded-xl" src={img} alt="" />
         </div>
         <div className=" space-y-4">
-          <h2 className="text-3xl font-semibold">Become a Teacher</h2>
+          <h2 className="text-4xl font-semibold">Become a Teacher</h2>
           <p className="text-base">
             Becoming a teacher is a journey filled with dedication, passion, and
             a commitment to shaping future generations. This noble profession
