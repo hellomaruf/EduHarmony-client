@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { BiBarChartAlt2 } from "react-icons/bi";
 import { MdOutlineAssignment } from "react-icons/md";
 import { FaRegCircleCheck } from "react-icons/fa6";
+import { IoMdAddCircle } from "react-icons/io";
 
 function SeeDetails() {
   const { id } = useParams();
@@ -64,7 +65,85 @@ function SeeDetails() {
             </dl>
           </div>
         </div>
+        <div className=" mt-10 space-y-3 max-w-2xl px-8">
+          <h2 className="text-2xl font-medium">
+            Creating a new challenge for your students?{" "}
+          </h2>
+          <p>
+            The Add Assignment feature allows you to effortlessly set up
+            assignments for your online class. It streamlines the process,
+            letting you provide clear instructions and expectations for your
+            students.
+          </p>
+          <label
+            htmlFor="my_modal_6"
+            className="btn rounded-full bg-[#7330ff] hover:bg-[#864eff] text-white"
+          >
+            Create <IoMdAddCircle />
+          </label>
+        </div>
       </section>
+
+
+      {/* Put this part before </body> tag */}
+      <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+      <div className="modal" role="dialog">
+        <div className="modal-box">
+          <h3 className="font-bold text-xl">Add Class Assignment!</h3>
+          <p className="py-4"></p>
+          <div className="mt-4">
+            <label htmlFor="firstname" className=" font-medium">
+              Assignment Title
+            </label>
+            <input
+              required
+              name="title"
+              type="text"
+              placeholder="Enter a Title"
+              className="w-full focus:bg-base-200 focus:border-[#7330ff]  rounded-md  p-2 outline-none border"
+            />
+          </div>
+          <div className="mt-4">
+            <label htmlFor="firstname" className=" font-medium">
+              Assignment Deadline
+            </label>
+            <input
+              required
+              name="title"
+              type="text"
+              placeholder="Enter a Title"
+              className="w-full focus:bg-base-200 focus:border-[#7330ff]  rounded-md  p-2 outline-none border"
+            />
+          </div>
+          <div className=" mt-4">
+            <label htmlFor="firstname" className=" font-medium">
+              Short Description
+            </label>
+            <textarea
+              required
+              name="description"
+              type="text"
+              placeholder="Enter a Short Description"
+              className="w-full focus:bg-base-200 focus:border-[#7330ff] rounded-md  p-2 outline-none border"
+            />
+          </div>
+
+          <div className="modal-action">
+            <label
+              htmlFor="my_modal_6"
+              className="btn rounded-full bg-base-300"
+            >
+              Cancel
+            </label>
+            <label
+              htmlFor="my_modal_6"
+              className="btn rounded-full text-white bg-[#7330ff] hover:bg-[#8349ff]"
+            >
+              Add Assignment
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

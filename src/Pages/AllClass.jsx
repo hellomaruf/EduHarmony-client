@@ -11,12 +11,12 @@ function AllClass() {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 gap-8 h-full">
           {acceptedClass?.map((item, index) => (
             <a
               key={index}
               href="#"
-              className="group relative block overflow-hidden rounded-2xl"
+              className="group relative block overflow-hidden h-full rounded-2xl"
             >
               <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
                 <span className="sr-only">Wishlist</span>
@@ -54,7 +54,7 @@ function AllClass() {
                   <div>
                     <dt className="sr-only">Address</dt>
 
-                    <dd className="font-semibold text-xl">{item?.title}</dd>
+                    <dd className="font-semibold text-xl">{item?.title.slice(0,30)}....</dd>
                     <dd className="font-normal text-sm pt-2">
                       {item?.description.slice(0, 70)}......
                     </dd>
