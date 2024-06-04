@@ -17,6 +17,7 @@ import UpdateClass from "../Components/Dashboard/TeacherDashboard/UpdateClass";
 import AllClass from "../Pages/AllClass";
 import ClassDetails from "../Components/Dashboard/StudentDashboard/ClassDetails";
 import Payment from "../Pages/Payment/Payment";
+import MyEnroll from "../Components/Dashboard/StudentDashboard/MyEnroll";
 
 export const router = createBrowserRouter([
   {
@@ -107,6 +108,12 @@ export const router = createBrowserRouter([
         element: <UpdateClass />,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/update/${params?.id}`),
+      },
+
+      // student dahsboard menu
+      {
+        path: "myEnroll",
+        element: <MyEnroll />,
       },
     ],
   },

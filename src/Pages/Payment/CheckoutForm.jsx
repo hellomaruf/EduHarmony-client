@@ -19,7 +19,6 @@ function CheckoutForm() {
     axiosSecure
       .post("/create-payment-intent", { price: data?.price })
       .then((res) => {
-        console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
       });
   }, []);
@@ -82,7 +81,11 @@ function CheckoutForm() {
 
     // Save payment info in database
     const paymentInfo = {
-      email: user?.email,
+      userEmail: user?.email,
+      teacherEmail: data?.email,
+      teacherName: data?.name,
+      title: data?.title,
+      photo: data?.photo,
       transactionId: paymentIntent?.id,
       price: data?.price,
       classId: data?._id,

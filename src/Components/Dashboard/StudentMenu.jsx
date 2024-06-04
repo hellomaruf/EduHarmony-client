@@ -5,11 +5,11 @@ import { RiAccountCircleLine } from "react-icons/ri";
 function StudentMenu() {
   return (
     <div>
-      <MenuItem icon={AiOutlineCoffee} label="My enroll" address="my-enroll" />
+      <MenuItem icon={AiOutlineCoffee} label="My enroll" address="myEnroll" />
       <MenuItem
         icon={RiAccountCircleLine}
         label="Profile"
-        address="my-listings"
+        address="profile"
       />
     </div>
   );
