@@ -21,6 +21,15 @@ function SeeDetails() {
     },
   });
 
+  const { data: assignment, refetch } = useQuery({
+    queryKey: "assignment",
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/assignment/${id}`);
+      return data;
+    },
+  });
+  console.log(assignment?.length);
+
   const mutation = useMutation({
     mutationFn: async (assignment) => {
       await axiosSecure.post("/assignment", assignment);
@@ -33,21 +42,21 @@ function SeeDetails() {
         showConfirmButton: false,
         timer: 1500,
       });
+      refetch();
     },
   });
 
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const assignmentInfo = {
       classId: id,
       title: data?.title,
       deadline: data?.deadline,
       description: data?.description,
     };
-      mutation.mutate(assignmentInfo);
-      reset()
+    mutation.mutate(assignmentInfo);
+    reset();
   };
 
   return (
@@ -77,7 +86,7 @@ function SeeDetails() {
                 </dt>
 
                 <dd className="text-4xl font-bold text-[#7330FF] md:text-5xl">
-                  24
+                  {assignment?.length}
                 </dd>
               </div>
 
