@@ -3,9 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Services/AuthProvider";
 import blankProfile from "../assets/Images/blankProfile.webp";
 import toast from "react-hot-toast";
+import useRole from "../Hooks/useRole";
 
 function Nav() {
   const { user, logout, setUser } = useContext(AuthContext);
+  const [role] = useRole();
+  console.log(role);
+
   const handleLogout = () => {
     logout();
     setUser("");
@@ -110,7 +114,19 @@ function Nav() {
               </span>
 
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link
+                  to={
+                    role === "student"
+                      ? "/dashboard/myEnroll"
+                      : role === "teacher"
+                      ? "/dashboard/myClass"
+                      : role === "admin"
+                      ? "/dashboard/teacherRequest"
+                      : "/dashboard"
+                  }
+                >
+                  Dashboard
+                </Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>

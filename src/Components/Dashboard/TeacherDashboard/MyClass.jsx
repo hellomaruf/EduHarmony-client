@@ -145,9 +145,9 @@ function MyClass() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <button className="btn w-full rounded-full text-white bg-[#7330ff] hover:bg-[#8c57ff] ">
+                  <Link to={`seeDetails/${item?._id}`} className="btn w-full rounded-full text-white bg-[#7330ff] hover:bg-[#8c57ff] ">
                     See Details
-                  </button>
+                  </Link>
                 </div>
               </div>
 

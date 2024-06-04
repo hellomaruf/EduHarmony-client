@@ -18,6 +18,7 @@ import AllClass from "../Pages/AllClass";
 import ClassDetails from "../Components/Dashboard/StudentDashboard/ClassDetails";
 import Payment from "../Pages/Payment/Payment";
 import MyEnroll from "../Components/Dashboard/StudentDashboard/MyEnroll";
+import SeeDetails from "../Components/Dashboard/TeacherDashboard/SeeDetails";
 
 export const router = createBrowserRouter([
   {
@@ -108,6 +109,12 @@ export const router = createBrowserRouter([
         element: <UpdateClass />,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/update/${params?.id}`),
+      },
+      {
+        path: "myClass/seeDetails/:id",
+        element: <SeeDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/enrollment/${params?.id}`),
       },
 
       // student dahsboard menu
