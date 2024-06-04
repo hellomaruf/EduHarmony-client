@@ -5,8 +5,6 @@ import Lottie from "lottie-react";
 import Cart from "../../assets/Images/payCart.json";
 
 function Payment() {
- 
-
   const stripePromise = loadStripe(import.meta.env.VITE_GATEWAY_API_KEY);
   return (
     <div className="max-w-7xl mx-auto my-9 ">
@@ -21,13 +19,16 @@ function Payment() {
             </Elements>
           </div>
           <div className=" mt-5">
-          <h3 className="text-xl font-semibold pb-2">Payment Instraction</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
-            ipsum ad nisi saepe consequatur ex soluta minus est. Enim voluptates
-            eos reprehenderit ab nemo iure harum, labore dolore iste esse!
-          </p>
-        </div>
+            <h3 className="text-xl font-semibold pb-2">Payment Instraction</h3>
+            <p>
+              The first text acts as a formal reminder for an invoice payment.
+              It details how to pay (online, mail, transfer) and emphasizes
+              including the invoice number. The second text is a professional
+              email from a freelancer to a client. It confirms a project s
+              completion, mentions the fee, and offers two secure payment
+              options with clear instructions.
+            </p>
+          </div>
         </div>
         <div className=" flex items-center justify-end">
           <Lottie className="w-[550px]" animationData={Cart} />

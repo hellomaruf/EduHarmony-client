@@ -28,7 +28,6 @@ function SeeDetails() {
       return data;
     },
   });
-  console.log(assignment?.length);
 
   const mutation = useMutation({
     mutationFn: async (assignment) => {

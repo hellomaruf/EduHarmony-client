@@ -115,7 +115,7 @@ function CheckoutForm() {
           }}
         />
         <button
-          className="btn bg-[#7330FF] text-white mt-4 btn-sm"
+          className="btn bg-[#7330FF] hover:bg-[#874fff] text-white mt-4 btn-sm"
           type="submit"
           disabled={!stripe || !clientSecret}
         >
