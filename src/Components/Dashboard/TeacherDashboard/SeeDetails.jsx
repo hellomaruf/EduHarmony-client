@@ -1,10 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { BiBarChartAlt2 } from "react-icons/bi";
 import { MdOutlineAssignment } from "react-icons/md";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { IoMdAddCircle } from "react-icons/io";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 function SeeDetails() {
   const { id } = useParams();
@@ -18,6 +20,35 @@ function SeeDetails() {
       return data;
     },
   });
+
+  const mutation = useMutation({
+    mutationFn: async (assignment) => {
+      await axiosSecure.post("/assignment", assignment);
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      Swal.fire({
+        icon: "success",
+        title: "Assignment Added Successfully!!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+  });
+
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    const assignmentInfo = {
+      classId: id,
+      title: data?.title,
+      deadline: data?.deadline,
+      description: data?.description,
+    };
+      mutation.mutate(assignmentInfo);
+      reset()
+  };
 
   return (
     <div>
@@ -84,64 +115,68 @@ function SeeDetails() {
         </div>
       </section>
 
-
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="my_modal_6" className="modal-toggle" />
       <div className="modal" role="dialog">
         <div className="modal-box">
           <h3 className="font-bold text-xl">Add Class Assignment!</h3>
           <p className="py-4"></p>
-          <div className="mt-4">
-            <label htmlFor="firstname" className=" font-medium">
-              Assignment Title
-            </label>
-            <input
-              required
-              name="title"
-              type="text"
-              placeholder="Enter a Title"
-              className="w-full focus:bg-base-200 focus:border-[#7330ff]  rounded-md  p-2 outline-none border"
-            />
-          </div>
-          <div className="mt-4">
-            <label htmlFor="firstname" className=" font-medium">
-              Assignment Deadline
-            </label>
-            <input
-              required
-              name="title"
-              type="text"
-              placeholder="Enter a Title"
-              className="w-full focus:bg-base-200 focus:border-[#7330ff]  rounded-md  p-2 outline-none border"
-            />
-          </div>
-          <div className=" mt-4">
-            <label htmlFor="firstname" className=" font-medium">
-              Short Description
-            </label>
-            <textarea
-              required
-              name="description"
-              type="text"
-              placeholder="Enter a Short Description"
-              className="w-full focus:bg-base-200 focus:border-[#7330ff] rounded-md  p-2 outline-none border"
-            />
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)} action="">
+            <div className="mt-4">
+              <label htmlFor="firstname" className=" font-medium">
+                Assignment Title
+              </label>
+              <input
+                {...register("title", { required: true })}
+                required
+                name="title"
+                type="text"
+                placeholder="Enter a Title"
+                className="w-full focus:bg-base-200 focus:border-[#7330ff]  rounded-md  p-2 outline-none border"
+              />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="firstname" className=" font-medium">
+                Assignment Deadline
+              </label>
+              <input
+                {...register("deadline", { required: true })}
+                required
+                name="deadline"
+                type="date"
+                placeholder="Enter a Title"
+                className="w-full focus:bg-base-200 focus:border-[#7330ff]  rounded-md  p-2 outline-none border"
+              />
+            </div>
+            <div className=" mt-4">
+              <label htmlFor="firstname" className=" font-medium">
+                Short Description
+              </label>
+              <textarea
+                {...register("description", { required: true })}
+                required
+                name="description"
+                type="text"
+                placeholder="Enter a Short Description"
+                className="w-full focus:bg-base-200 focus:border-[#7330ff] rounded-md  p-2 outline-none border"
+              />
+            </div>
+            <div className="modal-action">
+              <label
+                htmlFor="my_modal_6"
+                className="btn rounded-full bg-base-300"
+              >
+                Cancel
+              </label>
 
-          <div className="modal-action">
-            <label
-              htmlFor="my_modal_6"
-              className="btn rounded-full bg-base-300"
-            >
-              Cancel
-            </label>
-            <label
-              htmlFor="my_modal_6"
-              className="btn rounded-full text-white bg-[#7330ff] hover:bg-[#8349ff]"
-            >
-              Add Assignment
-            </label>
-          </div>
+              <button
+                type="submit"
+                className="btn rounded-full text-white bg-[#7330ff] hover:bg-[#8349ff]"
+              >
+                Add Assignment
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
