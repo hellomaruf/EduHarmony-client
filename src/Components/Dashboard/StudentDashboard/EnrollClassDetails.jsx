@@ -4,22 +4,36 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../Services/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { IoMdAdd } from "react-icons/io";
+import toast from "react-hot-toast";
 
 function EnrollClassDetails() {
   let count = 1;
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
   const assignment = useLoaderData();
-  const { register, handleSubmit } = useForm();
+  console.log(assignment);
+  const {
+    register: feedbackRegister,
+    handleSubmit: handleFeedbackSubmit,
+    reset: feedbackReset,
+  } = useForm();
+  const {
+    register: assignmentSubmitRegister,
+    handleSubmit: handleAssignmentSubmit,
+    reset: asignmentReset,
+  } = useForm();
   const mutation = useMutation({
     mutationFn: async (feedback) => {
       await axiosPublic.post("/feedback", feedback);
     },
     onSuccess: (data) => {
       console.log(data);
+      toast.success("Feedback Send Successfully!");
+      feedbackReset();
     },
   });
-  const onSubmit = (data) => {
+  const onSubmitFeedback = (data) => {
     console.log(data);
     const feedbackInfo = {
       title: data?.category,
@@ -30,13 +44,35 @@ function EnrollClassDetails() {
     };
     mutation.mutate(feedbackInfo);
   };
+
+  const assignmentMutation = useMutation({
+    mutationFn: async (assignment) => {
+      await axiosPublic.post("/assignmentSubmission", assignment);
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      toast.success("Assignment Send Successfully!");
+      asignmentReset();
+    },
+  });
+  const onSubmitAssigment = (data) => {
+    console.log(data);
+    const submitInfo = {
+      details: data?.details,
+      classId: assignment[0].classId,
+      studentName: user?.displayName,
+      studentEmail: user?.email,
+    };
+    console.log(submitInfo);
+    assignmentMutation.mutate(submitInfo);
+  };
   return (
     <div>
       <label
         htmlFor="my_modal_6"
         className="btn rounded-full bg-[#7330FF] hover:bg-[#864dff] text-white mb-4"
       >
-        Teaching Evaluation Report
+        Teaching Evaluation Report <IoMdAdd className="text-xl" />
       </label>
       <div className="overflow-x-auto">
         <table className="table">
@@ -62,7 +98,10 @@ function EnrollClassDetails() {
                 </td>
                 <td>{item?.description.slice(0, 60)}......</td>
                 <td>
-                  <label  htmlFor="my_modal_8" className="btn btn-sm rounded-full bg-[#7330ff] hover:bg-[#834aff] text-white">
+                  <label
+                    htmlFor="my_modal_8"
+                    className="btn btn-sm rounded-full bg-[#7330ff] hover:bg-[#834aff] text-white"
+                  >
                     Submit
                   </label>
                 </td>
@@ -78,7 +117,7 @@ function EnrollClassDetails() {
         <div className="modal-box">
           <h3 className="font-bold text-xl">Add Teaching Evaluation Report!</h3>
           <p className="py-4"></p>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleFeedbackSubmit(onSubmitFeedback)}>
             <div className="col-span-full ">
               <label htmlFor="firstname" className="text-lg font-medium">
                 Category
@@ -87,7 +126,7 @@ function EnrollClassDetails() {
                 className="w-full rounded-md focus:bg-base-200  p-2 outline-none border"
                 name="category"
                 id="category"
-                {...register("category", { required: true })}
+                {...feedbackRegister("category", { required: true })}
               >
                 <option value="web development">Web Development</option>
                 <option value="mobile app development">
@@ -104,7 +143,7 @@ function EnrollClassDetails() {
                 Rating
               </label>
               <input
-                {...register("rating", { required: true })}
+                {...feedbackRegister("rating", { required: true })}
                 required
                 name="rating"
                 type="number"
@@ -117,7 +156,7 @@ function EnrollClassDetails() {
                 Short Description
               </label>
               <textarea
-                {...register("description", { required: true })}
+                {...feedbackRegister("description", { required: true })}
                 required
                 name="description"
                 type="text"
@@ -149,18 +188,17 @@ function EnrollClassDetails() {
         <div className="modal-box">
           <h3 className="font-bold text-xl">Submit Your Assignment!</h3>
           <p className="py-4"></p>
-          <form onSubmit={handleSubmit(onSubmit)}>
-         
+          <form onSubmit={handleAssignmentSubmit(onSubmitAssigment)}>
             <div className="">
               <label htmlFor="firstname" className=" font-medium">
-                Short Description
+                Details
               </label>
               <textarea
-                {...register("description", { required: true })}
+                {...assignmentSubmitRegister("details", { required: true })}
                 required
-                name="description"
+                name="details"
                 type="text"
-                placeholder="Enter a Short Description"
+                placeholder="Put your link and descreption here"
                 className="w-full focus:bg-base-200 focus:border-[#7330ff] rounded-md  p-2 outline-none border"
               />
             </div>
