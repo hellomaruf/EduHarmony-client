@@ -50,6 +50,9 @@ function MyClass() {
   };
   return (
     <div>
+      <div className="text-3xl mb-8 font-semibold">
+        Hi {user?.displayName}!👋
+      </div>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -90,13 +93,15 @@ function MyClass() {
                   <div>
                     <dt className="sr-only">Price</dt>
 
-                    <dd className="text-sm text-gray-500">${item?.price}</dd>
+                    <dd className="text-xl text-gray-500">${item?.price}</dd>
                   </div>
 
                   <div>
                     <dt className="sr-only">Address</dt>
 
-                    <dd className="font-semibold text-xl">{item?.title}</dd>
+                    <dd className="font-semibold text-xl">
+                      {item?.title?.slice(0, 30)}
+                    </dd>
                     <dd className="font-normal text-sm pt-2">
                       {item?.description.slice(0, 70)}......
                     </dd>
@@ -104,12 +109,12 @@ function MyClass() {
                       <div
                         className={
                           item?.status === "accepted"
-                          ? " badge badge-accent"
-                          : item?.status === "pending"
-                          ? "badge badge-warning"
-                          : item?.status === "rejected"
-                          ? " badge badge-error"
-                          : "/dashboard"
+                            ? " badge badge-accent"
+                            : item?.status === "pending"
+                            ? "badge badge-warning"
+                            : item?.status === "rejected"
+                            ? " badge badge-error"
+                            : "/dashboard"
                         }
                       >
                         {item?.status}

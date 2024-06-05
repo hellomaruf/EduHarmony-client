@@ -1,12 +1,18 @@
 import { MdOutlineAccountCircle } from "react-icons/md";
 import useMyEnroll from "../../../Hooks/useMyEnroll";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../Services/AuthProvider";
 
 function MyEnroll() {
   const { myEnrollClasses } = useMyEnroll();
+  const {user} = useContext(AuthContext)
   console.log(myEnrollClasses);
   return (
     <div>
+      <div className="">
+        <h2 className="text-3xl mb-5 text-gray-800 font-semibold">Hi { user?.displayName}!👋</h2>
+      </div>
       <div className="grid grid-cols-4 gap-6 mr-6">
         {myEnrollClasses?.map((classes, index) => (
           <a
