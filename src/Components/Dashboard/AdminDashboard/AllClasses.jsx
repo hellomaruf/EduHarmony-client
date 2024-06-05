@@ -95,8 +95,11 @@ function AllClasses() {
                     </button>
                   </td>
                   <td>
-                          <button disabled={ item?.status === 'pending' && 'rejected'} className="btn btn-sm rounded-full bg-[#7330FF] text-white">
-                      See Progress
+                    <button
+                      disabled={item?.status === "pending" && "rejected"}
+                      className="btn btn-sm  rounded-full bg-[#7330FF] hover:bg-[#864eff] text-white"
+                    >
+                     Progress
                     </button>
                   </td>
                 </tr>

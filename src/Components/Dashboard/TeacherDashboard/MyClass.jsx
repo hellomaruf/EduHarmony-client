@@ -107,7 +107,7 @@ function MyClass() {
                           ? " badge badge-accent"
                           : item?.status === "pending"
                           ? "badge badge-warning"
-                          : item?.status === "reject"
+                          : item?.status === "rejected"
                           ? " badge badge-error"
                           : "/dashboard"
                         }
