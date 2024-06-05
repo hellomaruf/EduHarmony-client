@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import img from "../assets/Images/teach.jpg";
+import img from "../assets/Images/teacher.png";
 function BecomeTeacher() {
   return (
     <div className=" max-w-7xl mx-auto my-8">
-      <div className="flex items-center justify-center gap-8  ">
-        <div className="">
-          <img className="max-w-96 rounded-xl" src={img} alt="" />
+      <div className="grid grid-cols-5 items-center justify-center gap-8  ">
+        <div className="col-span-2">
+          <img className=" rounded-xl" src={img} alt="" />
         </div>
-        <div className=" space-y-4">
+        <div className=" space-y-4 col-span-3">
           <h2 className="text-4xl font-semibold">Become a Teacher</h2>
           <p className="text-base">
             Becoming a teacher is a journey filled with dedication, passion, and
