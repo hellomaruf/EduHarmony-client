@@ -44,7 +44,7 @@ function UpdateClass() {
     <div>
       <h2 className="text-3xl mb-8 font-semibold">Update Your Class</h2>
       <form onSubmit={handleUpdate} action="">
-        <div className="grid grid-cols-6 gap-4 col-span-full ">
+        <div className="grid max-w-3xl  gap-5  ">
           <div className="col-span-full sm:col-span-3">
             <label htmlFor="firstname" className="text-lg font-medium">
               Title

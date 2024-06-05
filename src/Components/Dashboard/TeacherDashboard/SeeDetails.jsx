@@ -11,8 +11,14 @@ import Swal from "sweetalert2";
 function SeeDetails() {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
+  const { data: submission } = useQuery({
+    queryKey: "submission",
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/assignmentSubmission/${id}`);
+      return data;
+    },
+  });
 
-  console.log(id);
   const { data: enrollment } = useQuery({
     queryKey: "enrollment",
     queryFn: async () => {
@@ -98,7 +104,7 @@ function SeeDetails() {
                 </dt>
 
                 <dd className="text-4xl font-bold text-[#7330FF] md:text-5xl">
-                  86
+                  { submission?.length}
                 </dd>
               </div>
             </dl>
