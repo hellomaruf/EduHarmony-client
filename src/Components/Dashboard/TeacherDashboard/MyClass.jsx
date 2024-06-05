@@ -48,7 +48,6 @@ function MyClass() {
       }
     });
   };
-
   return (
     <div>
       {isLoading ? (
@@ -104,9 +103,13 @@ function MyClass() {
                     <div className=" flex items-center justify-between">
                       <div
                         className={
-                          item?.status === "rejected"
-                            ? "badge  mt-2 badge-error text-white"
-                            : "badge  mt-2 badge-warning text-white"
+                          item?.status === "accepted"
+                          ? " badge badge-accent"
+                          : item?.status === "pending"
+                          ? "badge badge-warning"
+                          : item?.status === "reject"
+                          ? " badge badge-error"
+                          : "/dashboard"
                         }
                       >
                         {item?.status}
@@ -145,7 +148,13 @@ function MyClass() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <Link to={`seeDetails/${item?._id}`} className="btn w-full rounded-full text-white bg-[#7330ff] hover:bg-[#8c57ff] ">
+                  <Link
+                    disabled={
+                      item?.status === "reject" || item?.status === "pending"
+                    }
+                    to={`seeDetails/${item?._id}`}
+                    className="btn w-full disabled:bg-[#7330FF] rounded-full text-white bg-[#7330ff] hover:bg-[#8c57ff] "
+                  >
                     See Details
                   </Link>
                 </div>

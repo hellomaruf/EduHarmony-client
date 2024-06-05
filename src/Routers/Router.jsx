@@ -19,6 +19,7 @@ import ClassDetails from "../Components/Dashboard/StudentDashboard/ClassDetails"
 import Payment from "../Pages/Payment/Payment";
 import MyEnroll from "../Components/Dashboard/StudentDashboard/MyEnroll";
 import SeeDetails from "../Components/Dashboard/TeacherDashboard/SeeDetails";
+import EnrollClassDetails from "../Components/Dashboard/StudentDashboard/EnrollClassDetails";
 
 export const router = createBrowserRouter([
   {
@@ -122,6 +123,10 @@ export const router = createBrowserRouter([
         path: "myEnroll",
         element: <MyEnroll />,
       },
+      {
+        path: 'myEnroll/enrollClassDetails',
+        element:<EnrollClassDetails/>
+      }
     ],
   },
 ]);

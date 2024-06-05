@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Services/AuthProvider";
 import useRole from "../../../Hooks/useRole";
-import { AiOutlineMail } from "react-icons/ai";
+import { AiFillTwitterCircle, AiOutlineMail } from "react-icons/ai";
+import { FaFacebook, FaGithub } from "react-icons/fa";
+import { RiInstagramFill } from "react-icons/ri";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -26,6 +28,13 @@ const Profile = () => {
           <p className="mt-2 text-2xl font-semibold text-gray-800 ">
             {user?.displayName}
           </p>
+
+          <div className=" flex items-center justify-center gap-3 mt-3 text-[#7330ff]">
+            <FaFacebook className=" text-2xl" />
+            <RiInstagramFill className=" text-2xl" />
+            <AiFillTwitterCircle className=" text-2xl" />
+            <FaGithub className=" text-2xl" />
+          </div>
           <div className="w-full p-2 mt-4 rounded-lg">
             <div className="space-y-6 text-sm text-gray-600 ">
               <div className="flex items-center gap-3">
