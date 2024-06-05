@@ -124,8 +124,10 @@ export const router = createBrowserRouter([
         element: <MyEnroll />,
       },
       {
-        path: 'myEnroll/enrollClassDetails',
-        element:<EnrollClassDetails/>
+        path: 'myEnroll/enrollClassDetails/:id',
+        element: <EnrollClassDetails />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/enrollClassDetails/${params?.id}`),
       }
     ],
   },

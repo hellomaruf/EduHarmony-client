@@ -43,7 +43,7 @@ function MyEnroll() {
               </div>
               <div className="mt-4">
                 <Link
-                  to={`enrollClassDetails`}
+                  to={`enrollClassDetails/${classes?.classId}`}
                   className="btn w-full rounded-full text-white bg-[#7330ff] hover:bg-[#8c57ff] "
                 >
                   Continue
