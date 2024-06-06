@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 function CheckoutForm() {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
-  console.log(data);
+  console.log(data._id);
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
   const elements = useElements();
@@ -22,6 +22,7 @@ function CheckoutForm() {
         setClientSecret(res.data.clientSecret);
       });
   }, []);
+
   const mutation = useMutation({
     mutationFn: (NewClass) => {
       return axiosSecure.post("/payment", NewClass);
@@ -29,12 +30,14 @@ function CheckoutForm() {
     onSuccess: (data) => {
       // Boom baby!
       console.log(data);
-      Swal.fire({
-        icon: "success",
-        title: "Payment Successfull!!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      if (data) {
+        Swal.fire({
+          icon: "success",
+          title: "Payment Successfull!!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     },
   });
   const handleSubmit = async (e) => {
@@ -72,27 +75,37 @@ function CheckoutForm() {
           },
         },
       });
+
     console.log(paymentIntent);
     if (confirmError) {
       console.log("Confirm Error");
     } else {
       console.log("payment intent", paymentIntent);
-    }
 
-    // Save payment info in database
-    const paymentInfo = {
-      userEmail: user?.email,
-      teacherEmail: data?.email,
-      teacherName: data?.name,
-      title: data?.title,
-      photo: data?.photo,
-      transactionId: paymentIntent?.id,
-      price: data?.price,
-      classId: data?._id,
-      date: new Date(),
-      status: "pending",
-    };
-    mutation.mutate(paymentInfo);
+      // Save payment info in database
+      const paymentInfo = {
+        userEmail: user?.email,
+        teacherEmail: data?.email,
+        teacherName: data?.name,
+        title: data?.title,
+        photo: data?.photo,
+        transactionId: paymentIntent?.id,
+        price: data?.price,
+        classId: data?._id,
+        date: new Date(),
+        status: "pending",
+      };
+      mutation.mutate(paymentInfo);
+
+      await axiosSecure
+        .patch(`/enrollmentCount/${data._id}`)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (

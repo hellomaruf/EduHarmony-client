@@ -42,6 +42,7 @@ function AddClass() {
       description,
       photo,
       status: "pending",
+      totalEnrollment : 0,
     };
     console.log(classInfo);
     mutation.mutate(classInfo);
