@@ -7,6 +7,7 @@ import UsersFeedback from "../Components/UsersFeedback";
 import useAllEnroll from "../Hooks/useAllEnroll";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import useClasses from "./../Hooks/useClasses";
+import PopularCourses from "../Components/PopularCourses";
 
 function Home() {
   const { classes } = useClasses();
@@ -25,6 +26,9 @@ function Home() {
       <Hero />
       <div className="py-8">
         <Partners />
+      </div>
+      <div className="py-8">
+        <PopularCourses />
       </div>
       <div className="py-8">
         <TotalCount classes={classes} allEnroll={allEnroll} allUsers={users} />

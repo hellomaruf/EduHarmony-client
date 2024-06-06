@@ -1,11 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { Swiper, SwiperSlide } from "swiper/react";
-import
-{ Rate }
-from
-"antd"
-;
+import { Rate } from "antd";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -43,24 +39,23 @@ function UsersFeedback() {
                 {/* <VscFeedback className="text-2xl text-[#ffcc53]" /> */}
                 <div className="avatar absolute  -top-10">
                   <div className="w-20 z-10 rounded-full">
-                    <img src={ item?.img} />
+                    <img src={item?.img} />
                   </div>
                 </div>
-                <Rate className="mt-3" defaultValue={item?.rating}/>
+                <Rate className="mt-3" defaultValue={item?.rating} />
                 {/* <img className="w-10" src={rating} alt="" /> */}
               </div>
               <div className="mt-4">
-              <h2 className=" text-gray-900">
-                {item?.feedbackText?.slice(0, 60)}....
-              </h2>
-              <div className="mt-6 flex gap-3 items-center justify-start">
-               
-                <div className=" ">
-                  <h3 className="font-semibold">{item?.name}</h3>
-                  <h5 className="text-gray-500">{item?.title}</h5>
+                <h2 className=" text-gray-900">
+                  {item?.feedbackText?.slice(0, 60)}....
+                </h2>
+                <div className="mt-6 flex gap-3 items-center justify-start">
+                  <div className=" ">
+                    <h3 className="font-semibold">{item?.name}</h3>
+                    <h5 className="text-gray-500">{item?.title}</h5>
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
           </SwiperSlide>
         ))}
