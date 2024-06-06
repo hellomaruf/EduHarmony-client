@@ -2,8 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Spinner from "../../../Utils/Spinner";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../../Services/AuthProvider";
 
 function AllClasses() {
+  const { user, loading } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const {
     data: classes,
@@ -11,6 +14,7 @@ function AllClasses() {
     refetch,
   } = useQuery({
     queryKey: "classes",
+    enabled: !loading && !!user?.email,
     queryFn: async () => {
       const { data } = await axiosSecure.get("/allClassesForAdmin");
       return data;
@@ -99,7 +103,7 @@ function AllClasses() {
                       disabled={item?.status === "pending" && "rejected"}
                       className="btn btn-sm  rounded-full bg-[#7330FF] hover:bg-[#864eff] text-white"
                     >
-                     Progress
+                      Progress
                     </button>
                   </td>
                 </tr>

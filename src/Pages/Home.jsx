@@ -5,18 +5,19 @@ import Partners from "../Components/Partners";
 import TotalCount from "../Components/TotalCount";
 import UsersFeedback from "../Components/UsersFeedback";
 import useAllEnroll from "../Hooks/useAllEnroll";
-import useAxiosPublic from "../Hooks/useAxiosPublic";
+// import useAxiosPublic from "../Hooks/useAxiosPublic";
 import useClasses from "./../Hooks/useClasses";
 import PopularCourses from "../Components/PopularCourses";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 function Home() {
   const { classes } = useClasses();
   const { allEnroll } = useAllEnroll();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: users } = useQuery({
     queryKey: "users",
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/users");
+      const { data } = await axiosSecure.get("/users");
       return data;
     },
   });

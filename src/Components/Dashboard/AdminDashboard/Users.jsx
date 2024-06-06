@@ -3,15 +3,20 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import Spinner from "../../../Utils/Spinner";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../../Services/AuthProvider";
 
 function Users() {
   const axiosSecure = useAxiosSecure();
+  const { user, loading } = useContext(AuthContext);
   const {
     data: users,
     isLoading,
     refetch,
   } = useQuery({
     queryKey: "users",
+    enabled: !loading && !!user?.email,
+
     queryFn: async () => {
       const { data } = await axiosSecure.get("/users");
       return data;

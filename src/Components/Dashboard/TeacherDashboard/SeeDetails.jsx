@@ -7,12 +7,17 @@ import { FaRegCircleCheck } from "react-icons/fa6";
 import { IoMdAddCircle } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../../Services/AuthProvider";
 
 function SeeDetails() {
   const { id } = useParams();
+  const {user, loading} = useContext(AuthContext)
   const axiosSecure = useAxiosSecure();
   const { data: submission } = useQuery({
     queryKey: "submission",
+    enabled: !loading && !!user?.email,
+
     queryFn: async () => {
       const { data } = await axiosSecure(`/assignmentSubmission/${id}`);
       return data;

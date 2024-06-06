@@ -11,13 +11,15 @@ import Swal from "sweetalert2";
 function MyClass() {
   //   const { classes } = useClasses();
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const {
     data: classes,
     isLoading,
     refetch,
   } = useQuery({
     queryKey: "myClass",
+    enabled: !loading && !!user?.email,
+
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/myClasses/${user?.email}`);
       return data;

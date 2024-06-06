@@ -1,11 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
-// import "swiper/css/pagination";
-// import required modules
 import { Autoplay } from "swiper/modules";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import SectionTitle from "../Shared/SectionTitle";

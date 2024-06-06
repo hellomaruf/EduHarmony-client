@@ -73,8 +73,22 @@ function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("current user---->", currentUser);
       setUser(currentUser);
-      // saveUser(currentUser);
-      setLoading(false);
+
+      if (currentUser) {
+        const userInfo = { email: currentUser?.email };
+        axiosPublic
+          .post("/jwt", userInfo)
+          .then((res) => {
+            if (res?.data?.token) {
+              localStorage.setItem("access-token", res?.data?.token);
+            }
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+      }
     });
     return () => {
       return unsubscribe();
@@ -90,7 +104,7 @@ function AuthProvider({ children }) {
     updateUserProfile,
     logout,
     setLoading,
-    saveUser
+    saveUser,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

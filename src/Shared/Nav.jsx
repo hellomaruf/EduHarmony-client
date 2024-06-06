@@ -109,28 +109,32 @@ function Nav() {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <span className="pl-2 font-semibold py-3 text-[#7330FF]">
-                {user?.displayName}
-              </span>
-
-              <li>
-                <Link
-                  to={
-                    role === "student"
-                      ? "/dashboard/myEnroll"
-                      : role === "teacher"
-                      ? "/dashboard/myClass"
-                      : role === "admin"
-                      ? "/dashboard/teacherRequest"
-                      : "/dashboard"
-                  }
-                >
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <a onClick={handleLogout}>Logout</a>
-              </li>
+              <div className="py-3 bg-gray-100">
+                <span className="pl-2 text-[18px] font-semibold  text-[#7330FF]">
+                  {user?.displayName}
+                </span>
+                <p className="pl-2 text-xs">{role}</p>
+              </div>
+              <div className="mt-3 space-y-2">
+                <li className="bg-gray-50 rounded-md">
+                  <Link
+                    to={
+                      role === "student"
+                        ? "/dashboard/myEnroll"
+                        : role === "teacher"
+                        ? "/dashboard/myClass"
+                        : role === "admin"
+                        ? "/dashboard/teacherRequest"
+                        : "/dashboard"
+                    }
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="bg-gray-50 rounded-md">
+                  <a onClick={handleLogout}>Logout</a>
+                </li>
+              </div>
             </ul>
           </div>
         </div>
