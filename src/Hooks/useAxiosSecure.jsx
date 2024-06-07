@@ -31,8 +31,8 @@ const useAxiosSecure = () => {
       const status = error.response.status;
       console.log("status error in the interceptops", status);
       if (status === 401) {
-        // await logout();
-        // navigate("/signin");
+        await logout();
+        navigate("/signin");
       }
       return Promise.reject(error);
     }

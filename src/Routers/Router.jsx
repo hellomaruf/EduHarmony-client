@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -77,8 +77,12 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
-    errorElement:<ErrorPage/>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage />,
     children: [
       // admin dashboard menu
 
@@ -127,11 +131,17 @@ export const router = createBrowserRouter([
         element: <MyEnroll />,
       },
       {
-        path: 'myEnroll/enrollClassDetails/:id',
-        element: <EnrollClassDetails />,
+        path: "myEnroll/enrollClassDetails/:id",
+        element: (
+          <PrivateRoute>
+            <EnrollClassDetails />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/enrollClassDetails/${params?.id}`),
-      }
+          fetch(
+            `${import.meta.env.VITE_API_URL}/enrollClassDetails/${params?.id}`
+          ),
+      },
     ],
   },
 ]);

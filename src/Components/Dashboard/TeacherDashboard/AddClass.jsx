@@ -4,10 +4,12 @@ import { ImageUpload } from "../../../Utils";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "./../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function AddClass() {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: (NewClass) => {
@@ -22,6 +24,7 @@ function AddClass() {
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate("/dashboard/myClass");
     },
   });
   const handleAddClass = async (e) => {
@@ -42,7 +45,7 @@ function AddClass() {
       description,
       photo,
       status: "pending",
-      totalEnrollment : 0,
+      totalEnrollment: 0,
     };
     console.log(classInfo);
     mutation.mutate(classInfo);

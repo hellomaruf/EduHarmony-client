@@ -1,6 +1,6 @@
 function Faq() {
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-2 items-center justify-center gap-5 my-10 pt-4">
+    <div className="max-w-7xl mx-auto grid grid-cols-2  justify-center gap-5 my-10 pt-4">
       <div className=" space-y-5">
         <h2 className="text-4xl font-semibold">
           Any Questions ? <br /> We got you.
