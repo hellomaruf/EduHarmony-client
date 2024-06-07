@@ -11,9 +11,10 @@ import PopularCourses from "../Components/PopularCourses";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
+import ChooseUs from "../Components/ChooseUs";
 
 function Home() {
-  const { user, loading} = useContext(AuthContext)
+  const { user, loading } = useContext(AuthContext);
   const { classes } = useClasses();
   const { allEnroll } = useAllEnroll();
   const axiosSecure = useAxiosSecure();
@@ -42,8 +43,12 @@ function Home() {
       <div className="py-8">
         <UsersFeedback />
       </div>
+    
       <div className="py-8">
         <BecomeTeacher />
+      </div>
+      <div className="py-8">
+        <ChooseUs />
       </div>
     </div>
   );
