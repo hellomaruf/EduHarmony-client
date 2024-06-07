@@ -9,13 +9,18 @@ import useAllEnroll from "../Hooks/useAllEnroll";
 import useClasses from "./../Hooks/useClasses";
 import PopularCourses from "../Components/PopularCourses";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../Services/AuthProvider";
 
 function Home() {
+  const { user, loading} = useContext(AuthContext)
   const { classes } = useClasses();
   const { allEnroll } = useAllEnroll();
   const axiosSecure = useAxiosSecure();
   const { data: users } = useQuery({
     queryKey: "users",
+    enabled: !loading && !!user?.email,
+
     queryFn: async () => {
       const { data } = await axiosSecure.get("/users");
       return data;

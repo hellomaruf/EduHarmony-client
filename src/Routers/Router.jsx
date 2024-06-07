@@ -20,11 +20,13 @@ import Payment from "../Pages/Payment/Payment";
 import MyEnroll from "../Components/Dashboard/StudentDashboard/MyEnroll";
 import SeeDetails from "../Components/Dashboard/TeacherDashboard/SeeDetails";
 import EnrollClassDetails from "../Components/Dashboard/StudentDashboard/EnrollClassDetails";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",
@@ -76,6 +78,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    errorElement:<ErrorPage/>,
     children: [
       // admin dashboard menu
 

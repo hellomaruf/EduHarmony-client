@@ -7,13 +7,13 @@ import useRole from "../Hooks/useRole";
 
 function Nav() {
   const { user, logout, setUser } = useContext(AuthContext);
-  const [role] = useRole();
-  console.log(role);
+  const [role, , refetch] = useRole();
 
   const handleLogout = () => {
     logout();
     setUser("");
     toast.success("Logout Successfully!!");
+    refetch();
   };
   const link = (
     <>
