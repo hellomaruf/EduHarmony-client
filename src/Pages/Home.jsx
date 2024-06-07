@@ -12,6 +12,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import ChooseUs from "../Components/ChooseUs";
+import Faq from "../Components/Faq";
 
 function Home() {
   const { user, loading } = useContext(AuthContext);
@@ -43,12 +44,15 @@ function Home() {
       <div className="py-8">
         <UsersFeedback />
       </div>
-    
+
       <div className="py-8">
         <BecomeTeacher />
       </div>
       <div className="py-8">
         <ChooseUs />
+      </div>
+      <div className="py-8">
+        <Faq />
       </div>
     </div>
   );

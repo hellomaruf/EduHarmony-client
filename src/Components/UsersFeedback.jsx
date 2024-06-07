@@ -34,7 +34,7 @@ function UsersFeedback() {
       >
         {feedback?.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="p-10 relative my-16 bg-gray-100 shadow-lg rounded-xl ">
+            <div className="p-10 relative my-16 border-2 border-gray-400 rounded-xl ">
               <div className=" ">
                 {/* <VscFeedback className="text-2xl text-[#ffcc53]" /> */}
                 <div className="avatar absolute  -top-10">
