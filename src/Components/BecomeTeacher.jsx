@@ -3,13 +3,13 @@ import img from "../assets/Images/teacher.png";
 function BecomeTeacher() {
   return (
     <div className=" max-w-7xl mx-auto my-8">
-      <div className="grid grid-cols-5 items-center justify-center gap-8  ">
+      <div className="grid grid-cols-1 mx-4 lg:grid-cols-5  items-center justify-center gap-8  ">
         <div className="col-span-2">
           <img className=" rounded-xl" src={img} alt="" />
         </div>
         <div className=" space-y-4 col-span-3">
           <h2 className="text-4xl font-semibold">Become a Teacher</h2>
-          <p className="text-base">
+          <p className="text-sm lg:text-base">
             Becoming a teacher is a journey filled with dedication, passion, and
             a commitment to shaping future generations. This noble profession
             offers the opportunity to make a lasting impact on students lives,

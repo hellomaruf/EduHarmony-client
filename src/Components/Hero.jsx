@@ -8,15 +8,15 @@ import { Autoplay, Pagination } from "swiper/modules";
 function Hero() {
   return (
     <div className="max-w-7xl mx-auto my-10">
-      <div className="grid grid-cols-2 items-center justify-center gap-4">
-        <div className=" space-y-6">
-          <h1 className="text-5xl font-semibold">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center space-y-8 lg:space-y-0 mx-4 lg:mx-4 gap-4">
+        <div className=" space-y-6 text-center lg:text-left">
+          <h1 className="text-4xl lg:text-5xl font-semibold">
             Your <span className="text-[#7330FF]">Education</span>, Our
             Management: The Perfect Partnership.
           </h1>
           <p>
-            At EduHarmony, we are committed to transforming the way you learn. Our
-            state-of-the-art online class website offers an immersive and
+            At EduHarmony, we are committed to transforming the way you learn.
+            Our state-of-the-art online class website offers an immersive and
             interactive learning experience designed to meet the needs of
             learners worldwide. Whether youre looking to develop new skills.
           </p>

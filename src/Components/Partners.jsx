@@ -10,13 +10,14 @@ import partner7 from "../assets/Images/partner7.png";
 function Partners() {
   return (
     <div className="py-12">
-      
-      <h3 className=" text-lg mb-8 max-w-2xl text-center mx-auto">
-        Educational institution partnerships involve alliances with other
-        schools, businesses, and organizations to enhance resources,
-        opportunities.
-      </h3>
-      <Marquee gradient gradientColor="#fff" gradientWidth={200} className="">
+      <div className="mx-4">
+        <h3 className=" text-lg mb-8 max-w-2xl text-center mx-auto ">
+          Educational institution partnerships involve alliances with other
+          schools, businesses, and organizations to enhance resources,
+          opportunities.
+        </h3>
+      </div>
+      <Marquee gradient gradientColor="#fff" gradientWidth={100} className="">
         <div className=" pr-6">
           <img className="h-20" src={partner1} alt="" />
         </div>

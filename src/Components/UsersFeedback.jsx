@@ -25,6 +25,25 @@ function UsersFeedback() {
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
+        breakpoints={{
+          // 320: {
+          //   slidesPerView: 1,
+          // },
+          // 640: {
+          //   slidesPerView: 3,
+          // },
+          320: {
+            slidesPerView: 1,
+          },
+          // when window width is between 641px and 1024px
+          641: {
+            slidesPerView: 2,
+          },
+          // when window width is >= 1025px
+          1025: {
+            slidesPerView: 3,
+          },
+        }}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
@@ -34,7 +53,7 @@ function UsersFeedback() {
       >
         {feedback?.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="p-10 relative my-16 border-2 border-gray-400 rounded-xl ">
+            <div className="p-10 mx-4 relative my-16 border-2 border-gray-400 rounded-xl ">
               <div className=" ">
                 {/* <VscFeedback className="text-2xl text-[#ffcc53]" /> */}
                 <div className="avatar absolute  -top-10">

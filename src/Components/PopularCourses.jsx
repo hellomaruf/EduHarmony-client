@@ -21,11 +21,31 @@ function PopularCourses() {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="pb-5">
-      <SectionTitle className='' title={"Our Popular Classes"} />
+        <SectionTitle className="" title={"Our Popular Classes"} />
       </div>
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
+        breakpoints={{
+          // 320: {
+          //   slidesPerView: 1,
+          // },
+          // 640: {
+          //   slidesPerView: 2,
+          // },
+
+        320: {
+          slidesPerView: 1,
+        },
+        // when window width is between 641px and 1024px
+        641: {
+          slidesPerView: 2,
+        },
+        // when window width is >= 1025px
+        1025: {
+          slidesPerView: 3,
+        },
+        }}
         pagination={{
           clickable: true,
         }}
@@ -41,7 +61,7 @@ function PopularCourses() {
             <a
               key={index}
               href="#"
-              className="group relative block overflow-hidden h-full  rounded-2xl"
+              className="group mx-4 relative block overflow-hidden h-full  rounded-2xl"
             >
               <img
                 src={item?.photo}
