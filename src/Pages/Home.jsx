@@ -24,7 +24,7 @@ function Home() {
     enabled: !loading && !!user?.email,
 
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/users");
+      const { data } = await axiosPublic.get("/allUsersForHome");
       return data;
     },
   });
@@ -44,7 +44,7 @@ function Home() {
       <div className="py-8">
         <UsersFeedback />
       </div>
-    
+
       <div className="py-8">
         <BecomeTeacher />
       </div>

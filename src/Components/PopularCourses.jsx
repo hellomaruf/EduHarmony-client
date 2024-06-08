@@ -15,7 +15,7 @@ function PopularCourses() {
       return data;
     },
   });
-  const popularClasses = classes?.filter(
+  const popularClasses = classes?.result?.filter(
     (classItem) => classItem.totalEnrollment > 10
   );
   return (

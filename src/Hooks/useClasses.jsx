@@ -1,21 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
+import useAxiosPublic from "./useAxiosPublic";
 
 function useClasses() {
   const { user, loading} = useContext(AuthContext)
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const {
     data: classes,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: "classes",
+    queryKey: ["classes"],
     enabled: !loading && !!user?.email,
 
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/allClassesForAdmin");
+      const { data } = await axiosPublic.get("/allClassForHome");
       return data;
     },
   });
