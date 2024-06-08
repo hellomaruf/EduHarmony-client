@@ -2,11 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Spinner from "../../../Utils/Spinner";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 function TeacherRequest() {
   const axiosSecure = useAxiosSecure();
   //   const [isDisabled, setIsDisabled] = useState(false);
-
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10;
   const {
     data: teacherRequest,
     isLoading,
@@ -60,6 +62,26 @@ function TeacherRequest() {
         console.log(error);
       });
   };
+  const count = teacherRequest?.count;
+  const numberOfPage = Math.ceil(count / itemsPerPage);
+  // const [itemsPerPage, setItemsPerPage] = useState(10)
+
+  const pages = [];
+  for (let i = 0; i < numberOfPage; i++) {
+    pages.push(i);
+  }
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages?.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   console.log(teacherRequest);
   return (
     <div>
@@ -86,7 +108,7 @@ function TeacherRequest() {
               </tr>
             </thead>
             <tbody>
-              {teacherRequest?.map((item, index) => (
+              {teacherRequest?.result?.map((item, index) => (
                 <tr key={index}>
                   <td>
                     <div className="flex items-center gap-3">
@@ -156,6 +178,28 @@ function TeacherRequest() {
             </tbody>
           </table>
         )}
+      </div>
+      <div className="text-center my-7">
+
+        <button onClick={handlePrevPage} className="btn  mr-3">
+          Prev
+        </button>
+        {pages.map((page, idx) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={
+              page === currentPage
+                ? "btn mr-3 rounded-full w-10  bg-[#7330ff] hover:bg-[#8c57ff] text-white"
+                : "btn rounded-full mr-3 w-10 "
+            }
+            key={idx}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={handleNextPage} className="btn  mr-3">
+          Next
+        </button>
       </div>
     </div>
   );
