@@ -123,7 +123,7 @@ function Users() {
         )}
       </div>
       <div className="text-center my-7">
-        <p>current page { currentPage}</p>
+      
         <button onClick={handlePrevPage} className="btn  mr-3">
           Prev
         </button>

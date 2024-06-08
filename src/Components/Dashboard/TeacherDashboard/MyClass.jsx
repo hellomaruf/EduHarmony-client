@@ -2,7 +2,7 @@ import { FiEdit } from "react-icons/fi";
 import { MdOutlineAccountCircle, MdOutlineDelete } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Services/AuthProvider";
 import Spinner from "../../../Utils/Spinner";
 import { Link } from "react-router-dom";
@@ -13,16 +13,20 @@ function MyClass() {
   //   const { classes } = useClasses();
   const axiosSecure = useAxiosSecure();
   const { user, loading } = useContext(AuthContext);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10;
   const {
     data: classes,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: "myClass",
+    queryKey: ["myClass", currentPage],
     enabled: !loading && !!user?.email,
 
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/myClasses/${user?.email}`);
+      const { data } = await axiosSecure.get(
+        `/myClasses/${user?.email}?page=${currentPage}&size=${itemsPerPage}`
+      );
       return data;
     },
   });
@@ -51,6 +55,27 @@ function MyClass() {
       }
     });
   };
+  console.log(classes?.count);
+  const count = classes?.count;
+  const numberOfPage = Math.ceil(count / itemsPerPage);
+
+  const pages = [];
+  for (let i = 0; i < numberOfPage; i++) {
+    pages.push(i);
+  }
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages?.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <div>
       <div className="text-3xl mb-8 font-semibold">
@@ -64,7 +89,7 @@ function MyClass() {
             <Spinner />
           ) : (
             <div className="grid grid-cols-3 gap-8 mr-8">
-              {classes?.map((item, index) => (
+              {classes?.result?.map((item, index) => (
                 <a
                   key={index}
                   href="#"
@@ -180,6 +205,27 @@ function MyClass() {
           )}
         </div>
       )}
+      <div className="text-center my-7">
+        <button onClick={handlePrevPage} className="btn  mr-3">
+          Prev
+        </button>
+        {pages.map((page, idx) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={
+              page === currentPage
+                ? "btn mr-3 rounded-full w-10  bg-[#7330ff] hover:bg-[#8c57ff] text-white"
+                : "btn rounded-full mr-3 w-10 "
+            }
+            key={idx}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={handleNextPage} className="btn  mr-3">
+          Next
+        </button>
+      </div>
     </div>
   );
 }

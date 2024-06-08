@@ -7,7 +7,6 @@ import UsersFeedback from "../Components/UsersFeedback";
 import useAllEnroll from "../Hooks/useAllEnroll";
 import useClasses from "./../Hooks/useClasses";
 import PopularCourses from "../Components/PopularCourses";
-// import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import ChooseUs from "../Components/ChooseUs";
