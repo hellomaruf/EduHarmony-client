@@ -35,7 +35,7 @@ function SignIn() {
       if (res.user) {
         toast.success("Successfully Sign In!!");
         setLoading(false);
-        saveUser(res.user)
+        saveUser(res.user);
         navigate(from);
       }
     });
@@ -47,8 +47,8 @@ function SignIn() {
           <h1 className="text-2xl font-bold sm:text-3xl">Sign In!</h1>
 
           <p className="mt-4 text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-            nulla eaque error neque ipsa culpa autem, at itaque nostrum!
+            To continue enjoying our services, please sign in to your account.
+            If you are new here, consider signing up to join our community.
           </p>
         </div>
         <div className=" max-w-md mx-auto">

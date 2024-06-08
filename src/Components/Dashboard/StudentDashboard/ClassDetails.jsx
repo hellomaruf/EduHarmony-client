@@ -5,21 +5,21 @@ function ClassDetails() {
   const classData = useLoaderData();
   return (
     <div className="max-w-7xl mx-auto my-8">
-      <div className="group block">
+      <div className="group block mx-4">
         <img
           src={classData?.photo}
           alt=""
           className="h-[350px] w-full rounded-2xl object-cover sm:h-[400px]"
         />
 
-        <div className=" grid grid-cols-3 gap-4 items-center justify-center">
+        <div className=" grid grid-cols-1 lg:grid-cols-3 gap-4 items-center justify-center">
           <div className="mt-3 flex justify-between col-span-2 text-sm">
             <div>
               <h3 className="text-gray-900 text-2xl font-semibold mt-3">
                 {classData?.title}
               </h3>
 
-              <p className=" text-lg mt-3 text-gray-500">
+              <p className=" lg:text-lg mt-3 text-gray-500">
                 {classData?.description}
               </p>
               <div className="my-6 flex items-center gap-3">
@@ -31,12 +31,17 @@ function ClassDetails() {
                   <h4>{classData?.email}</h4>
                 </div>
               </div>
-              <p className=" font-semibold text-[#7330FF] text-3xl mt-2">
-                ${classData?.price}
-              </p>
-              <Link to={`/payment/${classData?._id}`}  className="btn rounded-full mt-6 bg-[#7330FF] hover:bg-[#8750ff] text-white">
-                Pay ${classData?.price}
-              </Link>
+              <div className=" flex lg:flex-col lg:items-start items-center justify-between">
+                <p className=" font-semibold text-[#7330FF] text-3xl mt-2">
+                  ${classData?.price}
+                </p>
+                <Link
+                  to={`/payment/${classData?._id}`}
+                  className="btn rounded-full mt-6 bg-[#7330FF] hover:bg-[#8750ff] text-white"
+                >
+                  Pay ${classData?.price}
+                </Link>
+              </div>
             </div>
           </div>
           <div className=" col-span-1 bg-gradient-to-r from-[#7330FF] to-[#5617e0] rounded-xl p-6 my-6">

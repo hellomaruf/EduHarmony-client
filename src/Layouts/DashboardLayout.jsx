@@ -7,7 +7,7 @@ function DashboardLayout() {
       <div className="">
         <Sidebar />
       </div>
-      <div className="ml-72 pt-8">
+      <div className="lg:ml-72 pt-8">
         <Outlet />
       </div>
     </div>

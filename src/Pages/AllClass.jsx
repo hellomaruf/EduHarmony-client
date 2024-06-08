@@ -34,7 +34,7 @@ function AllClass() {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="grid grid-cols-3 gap-8 h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-4 gap-8 h-full">
           {acceptedClass?.map((item, index) => (
             <a
               key={index}

@@ -89,7 +89,7 @@ function TeacherRequest() {
         {isLoading ? (
           <Spinner />
         ) : (
-          <table className="table">
+          <table className="table min-w-full">
             {/* head */}
             <thead>
               <tr>

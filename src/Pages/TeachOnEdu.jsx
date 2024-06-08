@@ -44,12 +44,13 @@ function TeachOnEdu() {
       });
   };
   return (
-    <div className="max-w-7xl mx-auto my-16">
+    <div className="max-w-7xl mx-auto  my-16">
+      <div className="mx-4">
       <form
         onSubmit={handleApplyTeaching}
         noValidate=""
         action=""
-        className="container flex flex-col mx-auto space-y-12"
+        className="container  flex flex-col mx-auto space-y-12"
       >
         <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-2xl shadow-sm  border-2 bg-base-100 border-[#7330FF]">
           <div className="grid grid-cols-6 gap-4 col-span-full ">
@@ -140,6 +141,8 @@ function TeachOnEdu() {
           </div>
         </fieldset>
       </form>
+      </div>
+    
     </div>
   );
 }

@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { GrLogout } from "react-icons/gr";
-import { AiOutlineBars } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Services/AuthProvider";
 import useRole from "../../Hooks/useRole";
 import StudentMenu from "./StudentMenu";
 import AdminMenu from "./AdminMenu";
 import TeachersMenu from "./TeachersMenu";
+import { TiThMenuOutline } from "react-icons/ti";
 
 const Sidebar = () => {
   const { logout } = useContext(AuthContext);
@@ -20,17 +20,14 @@ const Sidebar = () => {
   return (
     <>
       {/* Small Screen Navbar */}
-      <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
+      <div className="bg-gray-50 text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/">
-              <img
-                // className='hidden md:block'
-                src="https://i.ibb.co/4ZXzmq5/logo.png"
-                alt="logo"
-                width="100"
-                height="100"
-              />
+            <div className="flex items-center justify-center gap-2">
+            <i className="ri-graduation-cap-fill text-3xl text-[#7330FF]"></i>
+            <a className=" text-2xl font-semibold">EduHarmony</a>
+          </div>
             </Link>
           </div>
         </div>
@@ -39,7 +36,7 @@ const Sidebar = () => {
           onClick={handleToggle}
           className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
         >
-          <AiOutlineBars className="h-5 w-5" />
+          <TiThMenuOutline className="h-5 w-5" />
         </button>
       </div>
 

@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Services/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import Swal from "sweetalert2";
@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 function CheckoutForm() {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
-  console.log(data);
+  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
   const elements = useElements();
@@ -37,6 +37,7 @@ function CheckoutForm() {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate('/dashboard/myEnroll')
       }
     },
   });

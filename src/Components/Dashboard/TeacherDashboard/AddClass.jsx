@@ -52,14 +52,15 @@ function AddClass() {
   };
 
   return (
-    <div className=" mr-8 h-[600px] flex items-center justify-center">
+    <div className=" mx-4 h-[600px] flex items-center justify-center">
+      <div className="">
+      <h2 className="text-3xl  font-semibold my-6 mt-20 md:mt-4">Add Your Class</h2>
       <form
         onSubmit={handleAddClass}
         noValidate=""
         action=""
         className="container flex flex-col mx-auto space-y-12"
       >
-        <h2 className="text-3xl  font-semibold">Add Your Class</h2>
 
         <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-2xl shadow-sm  border-2 bg-base-100 border-[#7330ff]">
           <div className="grid grid-cols-6 gap-4 col-span-full ">
@@ -135,7 +136,7 @@ function AddClass() {
               <input
                 type="file"
                 name="image"
-                className="file-input mt-4 file-input-ghost bg-gray-100 rounded-full"
+                className="file-input w-full mt-4 file-input-ghost bg-gray-100 rounded-full"
               />
             </div>
 
@@ -149,6 +150,8 @@ function AddClass() {
           </div>
         </fieldset>
       </form>
+      </div>
+       
     </div>
   );
 }

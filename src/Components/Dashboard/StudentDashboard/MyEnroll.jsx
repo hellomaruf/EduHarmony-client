@@ -11,15 +11,15 @@ function MyEnroll() {
   console.log(myEnrollClasses);
   return (
     <div>
-      <div className="">
-        <h2 className="text-3xl mb-5 text-gray-800 font-semibold">
+      <div className=" mx-4">
+        <h2 className="text-2xl lg:text-3xl mb-5 text-gray-800 font-semibold">
           Hi {user?.displayName}!👋
         </h2>
       </div>
       {myEnrollClasses?.length === 0 ? (
         <Default title={"You are not enrolled"} />
       ) : (
-        <div className="grid grid-cols-4 gap-6 mr-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-4 ">
           {myEnrollClasses?.map((classes, index) => (
             <a
               key={index}
@@ -37,7 +37,7 @@ function MyEnroll() {
                   <div>
                     <dt className="sr-only">Address</dt>
 
-                    <dd className="font-semibold text-xl">{classes?.title}</dd>
+                    <dd className="font-semibold text-xl">{classes?.title.slice(0,30)}</dd>
                   </div>
                 </dl>
 

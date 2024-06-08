@@ -11,8 +11,8 @@ const Profile = () => {
 
   console.log(user);
   return (
-    <div className="flex justify-center items-center h-[600px] ">
-      <div className=" border-[#7330ff] border-2 bg-gray-50 rounded-2xl w-3/5">
+    <div className="flex justify-center items-center h-[600px] mx-4">
+      <div className=" border-[#7330ff] border-2 bg-gray-50 rounded-2xl  w-full lg:w-3/5 ">
         <div className="flex flex-col items-center justify-center p-4 ">
           <a href="#" className="relative block">
             <img

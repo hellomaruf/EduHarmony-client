@@ -69,8 +69,8 @@ function SignUp() {
           <h1 className="text-2xl font-bold sm:text-3xl">Sign Up!</h1>
 
           <p className="mt-4 text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-            nulla eaque error neque ipsa culpa autem, at itaque nostrum!
+            To continue enjoying our services, please sign in to your account.
+            If you are new here, consider signing up to join our community.
           </p>
         </div>
         <div className="max-w-md mx-auto">

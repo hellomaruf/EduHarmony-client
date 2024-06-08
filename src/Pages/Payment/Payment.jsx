@@ -3,15 +3,16 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import Lottie from "lottie-react";
 import Cart from "../../assets/Images/payCart.json";
+import SectionTitle from "../../Shared/SectionTitle";
 
 function Payment() {
   const stripePromise = loadStripe(import.meta.env.VITE_GATEWAY_API_KEY);
   return (
     <div className="max-w-7xl mx-auto my-9 ">
-      <h2 className="text-3xl font-semibold text-center">
-        Payment for Enrollment
-      </h2>
-      <div className=" grid grid-cols-2 gap-4 items-center">
+      <div className=" mx-4 pb-3">
+        <SectionTitle className="" title={"Payment for Enrollment"} />
+      </div>
+      <div className=" grid grid-cols-1 lg:grid-cols-2 mx-4 gap-4 items-center">
         <div className="">
           <div className="">
             <Elements stripe={stripePromise}>
