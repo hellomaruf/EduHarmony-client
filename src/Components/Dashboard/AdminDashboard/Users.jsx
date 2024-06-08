@@ -3,26 +3,31 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import Spinner from "../../../Utils/Spinner";
 import Swal from "sweetalert2";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Services/AuthProvider";
 
 function Users() {
   const axiosSecure = useAxiosSecure();
   const { user, loading } = useContext(AuthContext);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10;
   const {
     data: users,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: "users",
+    queryKey: ['users', currentPage],
     enabled: !loading && !!user?.email,
 
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/users");
+      const { data } = await axiosSecure.get(
+        `/users?page=${currentPage}&size=${itemsPerPage}`
+      );
       return data;
     },
   });
-  console.log(users);
+
+ 
   const handleMakeAdmin = async (item) => {
     await axiosSecure.patch(`/users/${item?._id}`).then((res) => {
       console.log(res.data);
@@ -38,7 +43,26 @@ function Users() {
       }
     });
   };
+  const count = users?.count;
+  const numberOfPage = Math.ceil(count / itemsPerPage);
+  // const [itemsPerPage, setItemsPerPage] = useState(10)
+ 
+  const pages = [];
+  for (let i = 0; i < numberOfPage; i++) {
+    pages.push(i);
+  }
+ 
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
+  const handleNextPage = () => {
+    if (currentPage < pages?.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   return (
     <div>
       <div className="overflow-x-auto">
@@ -58,7 +82,7 @@ function Users() {
               </tr>
             </thead>
             <tbody>
-              {users?.map((item, index) => (
+              {users?.result?.map((item, index) => (
                 <tr key={index}>
                   <td>
                     <div className="flex items-center gap-3">
@@ -97,6 +121,28 @@ function Users() {
             </tbody>
           </table>
         )}
+      </div>
+      <div className="text-center my-7">
+        <p>current page { currentPage}</p>
+        <button onClick={handlePrevPage} className="btn  mr-3">
+          Prev
+        </button>
+        {pages.map((page, idx) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={
+              page === currentPage
+                ? "btn mr-3 rounded-full w-10  bg-[#7330ff] hover:bg-[#8c57ff] text-white"
+                : "btn rounded-full mr-3 w-10 "
+            }
+            key={idx}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={handleNextPage} className="btn  mr-3">
+          Next
+        </button>
       </div>
     </div>
   );

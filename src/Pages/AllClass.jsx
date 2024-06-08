@@ -2,10 +2,33 @@ import { Link } from "react-router-dom";
 import useClasses from "./../Hooks/useClasses";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import Spinner from "../Utils/Spinner";
+import { useState } from "react";
+
+// import { useState } from "react";
 function AllClass() {
   const { classes, isLoading } = useClasses();
   const acceptedClass = classes?.filter((item) => item?.status === "accepted");
-  console.log(acceptedClass);
+  const count = acceptedClass?.length;
+  // const [itemsPerPage, setItemsPerPage] = useState(10)
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 10;
+  const numberOfPage = Math.ceil(count / itemsPerPage);
+  const pages = [];
+  for (let i = 0; i < numberOfPage; i++) {
+    pages.push(i);
+  }
+  console.log(pages);
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages?.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   return (
     <div className="max-w-7xl mx-auto my-12">
       {isLoading ? (
@@ -54,7 +77,9 @@ function AllClass() {
                   <div>
                     <dt className="sr-only">Address</dt>
 
-                    <dd className="font-semibold text-xl">{item?.title.slice(0,30)}....</dd>
+                    <dd className="font-semibold text-xl">
+                      {item?.title.slice(0, 30)}....
+                    </dd>
                     <dd className="font-normal text-sm pt-2">
                       {item?.description.slice(0, 70)}......
                     </dd>
@@ -84,6 +109,27 @@ function AllClass() {
           ))}
         </div>
       )}
+      <div className="text-center">
+        <button onClick={handlePrevPage} className="btn  mr-3">
+          Prev
+        </button>
+        {pages.map((page, idx) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={
+              page === currentPage
+                ? "btn mr-3 rounded-full w-10  bg-[#7330ff] hover:bg-[#8c57ff] text-white"
+                : "btn rounded-full mr-3 w-10 "
+            }
+            key={idx}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={handleNextPage} className="btn  mr-3">
+          Next
+        </button>
+      </div>
     </div>
   );
 }

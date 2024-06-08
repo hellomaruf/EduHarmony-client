@@ -5,26 +5,26 @@ import Partners from "../Components/Partners";
 import TotalCount from "../Components/TotalCount";
 import UsersFeedback from "../Components/UsersFeedback";
 import useAllEnroll from "../Hooks/useAllEnroll";
-// import useAxiosPublic from "../Hooks/useAxiosPublic";
 import useClasses from "./../Hooks/useClasses";
 import PopularCourses from "../Components/PopularCourses";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
+// import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import ChooseUs from "../Components/ChooseUs";
 import Faq from "../Components/Faq";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 function Home() {
   const { user, loading } = useContext(AuthContext);
   const { classes } = useClasses();
   const { allEnroll } = useAllEnroll();
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const { data: users } = useQuery({
     queryKey: "users",
     enabled: !loading && !!user?.email,
 
     queryFn: async () => {
-      const { data } = await axiosSecure.get("/users");
+      const { data } = await axiosPublic.get("/users");
       return data;
     },
   });
@@ -44,7 +44,7 @@ function Home() {
       <div className="py-8">
         <UsersFeedback />
       </div>
-
+    
       <div className="py-8">
         <BecomeTeacher />
       </div>

@@ -7,13 +7,13 @@ import useRole from "../Hooks/useRole";
 
 function Nav() {
   const { user, logout, setUser } = useContext(AuthContext);
-  const [role, , refetch] = useRole();
+  const [role, ,] = useRole();
+  console.log(role);
 
   const handleLogout = () => {
     logout();
     setUser("");
     toast.success("Logout Successfully!!");
-    refetch();
   };
   const link = (
     <>
@@ -80,7 +80,7 @@ function Nav() {
           <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
         <div className="navbar-end">
-          {user ? (
+          {user?.email ? (
             ""
           ) : (
             <Link
@@ -113,7 +113,7 @@ function Nav() {
                 <span className="pl-2 text-[18px] font-semibold  text-[#7330FF]">
                   {user?.displayName}
                 </span>
-                <p className="pl-2 text-xs">{role}</p>
+                {/* <p className="pl-2 text-xs">{role}</p> */}
               </div>
               <div className="mt-3 space-y-2">
                 <li className="bg-gray-50 rounded-md">
@@ -127,6 +127,9 @@ function Nav() {
                         ? "/dashboard/teacherRequest"
                         : "/dashboard"
                     }
+                    // to={
+                    //   '/dashboard'
+                    // }
                   >
                     Dashboard
                   </Link>
