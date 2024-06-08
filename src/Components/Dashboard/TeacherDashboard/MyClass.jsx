@@ -75,7 +75,7 @@ function MyClass() {
       setCurrentPage(currentPage + 1);
     }
   };
-
+console.log(classes?.length);
   return (
     <div>
       <div className="text-3xl mb-8 font-semibold">

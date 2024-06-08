@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 function CheckoutForm() {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
-  console.log(data._id);
+  console.log(data);
   const axiosSecure = useAxiosSecure();
   const stripe = useStripe();
   const elements = useElements();
