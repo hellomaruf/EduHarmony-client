@@ -17,7 +17,7 @@ function Progress() {
       return data;
     },
   });
-  console.log(feedback);
+ 
   return (
     <div>
       <article className="flex bg-white transition mx-4">
