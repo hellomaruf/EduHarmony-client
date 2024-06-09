@@ -70,7 +70,7 @@ function SignUp() {
 
           <p className="mt-4 text-gray-500">
             To continue enjoying our services, please sign in to your account.
-            If you are new here, consider signing up to join our community.
+          If you are new here, consider signing up to join our community.
           </p>
         </div>
         <div className="max-w-md mx-auto">

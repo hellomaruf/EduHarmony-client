@@ -140,9 +140,14 @@ function TeacherRequest() {
                     <th className="flex font-normal ">
                       <span
                         className={
+                        
                           item?.status === "pending"
                             ? "badge badge-warning text-white"
-                            : "badge badge-error text-white"
+                            : item?.status === "accepted"
+                            ? "badge badge-accent text-white"
+                            : item?.status === "reject"
+                            ? "badge badge-error text-white"
+                            : "badge"
                         }
                       >
                         {item?.status}
@@ -180,7 +185,6 @@ function TeacherRequest() {
         )}
       </div>
       <div className="text-center my-7">
-
         <button onClick={handlePrevPage} className="btn  mr-3">
           Prev
         </button>

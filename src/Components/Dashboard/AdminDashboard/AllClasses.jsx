@@ -4,6 +4,7 @@ import Spinner from "../../../Utils/Spinner";
 import toast from "react-hot-toast";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Services/AuthProvider";
+import { Link } from 'react-router-dom';
 
 function AllClasses() {
   const { user, loading } = useContext(AuthContext);
@@ -131,12 +132,12 @@ function AllClasses() {
                       </button>
                     </td>
                     <td>
-                      <button
+                      <Link to={`progress/${item?._id}`}
                         disabled={item?.status === "pending" && "rejected"}
                         className="btn btn-sm  rounded-full bg-[#7330FF] hover:bg-[#864eff] text-white"
                       >
                         Progress
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}

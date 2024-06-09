@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../../Services/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
@@ -13,6 +13,8 @@ function EnrollClassDetails() {
   const { user } = useContext(AuthContext);
   const assignment = useLoaderData();
   console.log(assignment);
+  const { id } = useParams();
+
   const {
     register: feedbackRegister,
     handleSubmit: handleFeedbackSubmit,
@@ -41,6 +43,7 @@ function EnrollClassDetails() {
       rating: data?.rating,
       name: user?.displayName,
       img: user?.photoURL,
+      classId: id,
     };
     mutation.mutate(feedbackInfo);
   };
@@ -70,7 +73,7 @@ function EnrollClassDetails() {
     <div>
       <label
         htmlFor="my_modal_6"
-        className="btn rounded-full bg-[#7330FF] hover:bg-[#864dff] text-white mb-4"
+        className="btn rounded-full ml-4 bg-[#7330FF] hover:bg-[#864dff] text-white mb-4"
       >
         Teaching Evaluation Report <IoMdAdd className="text-xl" />
       </label>
@@ -94,9 +97,9 @@ function EnrollClassDetails() {
                 <th>{count++}</th>
                 <td>{item?.title}</td>
                 <td>
-                  <span className=" badge badge-outline">{item?.deadline}</span>
+                  <span className="">{item?.deadline}</span>
                 </td>
-                <td>{item?.description.slice(0, 60)}......</td>
+                <td>{item?.description.slice(0, 50)}......</td>
                 <td>
                   <label
                     htmlFor="my_modal_8"

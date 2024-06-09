@@ -77,13 +77,13 @@ function MyClass() {
       setCurrentPage(currentPage + 1);
     }
   };
-  console.log(classes?.length);
+  console.log(classes?.result?.length);
   return (
     <div>
       <div className="text-3xl mb-8 font-semibold mx-4">
         Hi {user?.displayName}!👋
       </div>
-      {classes?.length === 0 ? (
+      {classes?.result?.length === 0 ? (
         <Default title={"You have not added any classes"} />
       ) : (
         <div className="">

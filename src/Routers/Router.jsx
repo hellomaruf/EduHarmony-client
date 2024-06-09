@@ -21,6 +21,7 @@ import MyEnroll from "../Components/Dashboard/StudentDashboard/MyEnroll";
 import SeeDetails from "../Components/Dashboard/TeacherDashboard/SeeDetails";
 import EnrollClassDetails from "../Components/Dashboard/StudentDashboard/EnrollClassDetails";
 import ErrorPage from "../Pages/ErrorPage";
+import Progress from "../Components/Dashboard/AdminDashboard/Progress";
 
 export const router = createBrowserRouter([
   {
@@ -101,6 +102,14 @@ export const router = createBrowserRouter([
       {
         path: "adminAllClasses",
         element: <AllClasses />,
+      },
+      {
+        path: "adminAllClasses/progress/:id",
+        element: <Progress />,
+        loader: ({ params }) =>
+          fetch(
+            `${import.meta.env.VITE_API_URL}/classesForProgress/${params?.id}`
+          ),
       },
 
       // teacher dashboard menu
