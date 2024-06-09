@@ -13,7 +13,10 @@ import ChooseUs from "../Components/ChooseUs";
 import Faq from "../Components/Faq";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 
+
+
 function Home() {
+
   const { user, loading } = useContext(AuthContext);
   const { classes } = useClasses();
   const { allEnroll } = useAllEnroll();
@@ -30,6 +33,7 @@ function Home() {
 
   return (
     <div>
+     
       <Hero />
       <div className="py-8">
         <Partners />

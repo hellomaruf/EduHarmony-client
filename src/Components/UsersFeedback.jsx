@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Autoplay } from "swiper/modules";
 import SectionTitle from "./../Shared/SectionTitle";
+import { Slide } from "react-awesome-reveal";
 function UsersFeedback() {
   const axiosPublic = useAxiosPublic();
   const { data: feedback } = useQuery({
@@ -53,29 +54,31 @@ function UsersFeedback() {
       >
         {feedback?.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="p-10 mx-4 relative my-16 border-2 border-gray-400 rounded-xl ">
-              <div className=" ">
-                {/* <VscFeedback className="text-2xl text-[#ffcc53]" /> */}
-                <div className="avatar absolute  -top-10">
-                  <div className="w-20 z-10 rounded-full">
-                    <img src={item?.img} />
+            <Slide direction="right" cascade damping={0.1}>
+              <div className="p-10 mx-4 relative my-16 border-2 border-gray-400 rounded-xl ">
+                <div className=" ">
+                  {/* <VscFeedback className="text-2xl text-[#ffcc53]" /> */}
+                  <div className="avatar absolute  -top-10">
+                    <div className="w-20 z-10 rounded-full">
+                      <img src={item?.img} />
+                    </div>
+                  </div>
+                  <Rate className="mt-3" defaultValue={item?.rating} />
+                  {/* <img className="w-10" src={rating} alt="" /> */}
+                </div>
+                <div className="mt-4">
+                  <h2 className=" text-gray-900">
+                    {item?.feedbackText?.slice(0, 60)}....
+                  </h2>
+                  <div className="mt-6 flex gap-3 items-center justify-start">
+                    <div className=" ">
+                      <h3 className="font-semibold">{item?.name}</h3>
+                      <h5 className="text-gray-500">{item?.title}</h5>
+                    </div>
                   </div>
                 </div>
-                <Rate className="mt-3" defaultValue={item?.rating} />
-                {/* <img className="w-10" src={rating} alt="" /> */}
               </div>
-              <div className="mt-4">
-                <h2 className=" text-gray-900">
-                  {item?.feedbackText?.slice(0, 60)}....
-                </h2>
-                <div className="mt-6 flex gap-3 items-center justify-start">
-                  <div className=" ">
-                    <h3 className="font-semibold">{item?.name}</h3>
-                    <h5 className="text-gray-500">{item?.title}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </Slide>
           </SwiperSlide>
         ))}
       </Swiper>

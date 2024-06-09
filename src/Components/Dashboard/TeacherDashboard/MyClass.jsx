@@ -207,27 +207,30 @@ function MyClass() {
           )}
         </div>
       )}
-      <div className="text-center my-7">
-        <button onClick={handlePrevPage} className="btn  mr-3">
-          Prev
-        </button>
-        {pages.map((page, idx) => (
-          <button
-            onClick={() => setCurrentPage(page)}
-            className={
-              page === currentPage
-                ? "btn mr-3 rounded-full w-10  bg-[#7330ff] hover:bg-[#8c57ff] text-white"
-                : "btn rounded-full mr-3 w-10 "
-            }
-            key={idx}
-          >
-            {page}
+
+      {classes?.result?.length > 0 && (
+        <div className="text-center my-7">
+          <button onClick={handlePrevPage} className="btn  mr-3">
+            Prev
           </button>
-        ))}
-        <button onClick={handleNextPage} className="btn  mr-3">
-          Next
-        </button>
-      </div>
+          {pages.map((page, idx) => (
+            <button
+              onClick={() => setCurrentPage(page)}
+              className={
+                page === currentPage
+                  ? "btn mr-3 rounded-full w-10  bg-[#7330ff] hover:bg-[#8c57ff] text-white"
+                  : "btn rounded-full mr-3 w-10 "
+              }
+              key={idx}
+            >
+              {page}
+            </button>
+          ))}
+          <button onClick={handleNextPage} className="btn  mr-3">
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
