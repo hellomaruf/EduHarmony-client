@@ -41,7 +41,7 @@ function UpdateClass() {
     mutation.mutate(updateInfo);
   };
   return (
-    <div>
+    <div className="mx-4">
       <h2 className="text-3xl mb-8 font-semibold">Update Your Class</h2>
       <form onSubmit={handleUpdate} action="">
         <div className="grid max-w-3xl  gap-5  ">
@@ -76,11 +76,11 @@ function UpdateClass() {
           type="file"
           name="image"
           //   defaultValue={loadedData?.photo}
-          className="file-input mt-4 file-input-ghost bg-gray-100 rounded-full"
+          className="file-input w-full mt-4 file-input-ghost bg-gray-100 rounded-full"
         />
         <div className="mt-4">
           <input
-            className="bg-[#7330ff] rounded-full hover:bg-[#8b56ff] btn text-white   py-2 font-bold"
+            className="bg-[#7330ff] rounded-full  hover:bg-[#8b56ff] btn text-white   py-2 font-bold"
             type="submit"
             value="Update Class"
           />
