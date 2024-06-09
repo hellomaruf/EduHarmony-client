@@ -40,7 +40,7 @@ Welcome to **EduHarmony**! EduHarmony is an online class website designed to pro
 
    - Clicking on See Details Page will take you to a separate page where you will see Total Enrollment, Total Assignment, Total Assignment Submission and a Create button.
 
-10. **Secure and Private**
+10. **Create Assignment**
     - Clicking the create button will open a modal for the assignment. There, students can add assignments for different classes.
 
 ## Getting Started
