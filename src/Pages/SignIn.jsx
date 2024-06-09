@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../Services/AuthProvider";
 import toast from "react-hot-toast";
 import { ImSpinner9 } from "react-icons/im";
+import { useForm } from "react-hook-form";
 
 function SignIn() {
   const [loading, setLoading] = useState(false);
@@ -11,13 +12,15 @@ function SignIn() {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || "/";
-  const handleSignIn = (e) => {
-    setLoading(true);
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    const email = data.email;
+    const password = data.password;
     signInUser(email, password)
       .then((res) => {
         if (res.user) {
@@ -30,6 +33,7 @@ function SignIn() {
         toast.error(error.message);
       });
   };
+
   const handleGoogleSignIn = () => {
     SignUpWithGoogle().then((res) => {
       if (res.user) {
@@ -53,7 +57,7 @@ function SignIn() {
         </div>
         <div className=" max-w-md mx-auto">
           <form
-            onSubmit={handleSignIn}
+            onSubmit={handleSubmit(onSubmit)}
             action="#"
             className="mx-auto mb-0 mt-8 max-w-md space-y-4"
           >
@@ -64,12 +68,13 @@ function SignIn() {
 
               <div className="relative">
                 <input
+                  {...register("email", { required: true })}
                   type="email"
                   name="email"
                   className="w-full rounded-lg bg-slate-50 border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter email"
                 />
-
+                {errors.email && <span>This field is required</span>}
                 <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +101,7 @@ function SignIn() {
 
               <div className="relative">
                 <input
+                  {...register("password", { required: true })}
                   type="password"
                   name="password"
                   className="w-full rounded-lg bg-slate-50 border-gray-200 p-4 pe-12 text-sm shadow-sm"

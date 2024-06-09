@@ -24,7 +24,7 @@ function AllClasses() {
       return data;
     },
   });
-  console.log(classes?.length);
+  console.log(classes);
 
   const handleApproved = async (item) => {
     await axiosSecure

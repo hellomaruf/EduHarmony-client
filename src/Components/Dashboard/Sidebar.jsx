@@ -24,9 +24,12 @@ const Sidebar = () => {
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/">
-            <div className="flex items-center justify-center gap-2">
-            <i className="ri-graduation-cap-fill text-3xl text-[#7330FF]"></i>
-            <a className=" text-2xl font-semibold">EduHarmony</a>
+            <div className="flex items-center justify-center gap-3">
+            <i className="ri-graduation-cap-fill text-3xl md:text-4xl text-[#7330FF]"></i>
+            <div>
+            <a className=" text-xl md:text-2xl font-semibold">EduHarmony</a>
+              <p className="tracking-[5px] text-xs md:text-sm">Microlearning</p>
+           </div>
           </div>
             </Link>
           </div>
@@ -50,10 +53,13 @@ const Sidebar = () => {
           <div>
             <div className="w-full hidden md:flex px-4 py-2 rounded-lg justify-center items-center mx-auto">
               <Link to="/">
-                <div className="flex items-center justify-center gap-2">
-                  <i className="ri-graduation-cap-fill text-2xl text-[#7330FF]"></i>
-                  <a className=" text-2xl font-semibold">EduHarmony</a>
-                </div>
+              <div className="flex items-center justify-center gap-3">
+            <i className="ri-graduation-cap-fill text-3xl md:text-4xl text-[#7330FF]"></i>
+            <div>
+            <a className=" text-xl md:text-2xl font-semibold">EduHarmony</a>
+              <p className="tracking-[5px] text-xs md:text-sm">Microlearning</p>
+           </div>
+          </div>
               </Link>
             </div>
           </div>

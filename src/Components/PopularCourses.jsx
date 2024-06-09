@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../Hooks/useAxiosPublic";
+// import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import SectionTitle from "../Shared/SectionTitle";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 function PopularCourses() {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: classes } = useQuery({
     queryKey: "classes",
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/allClassesForAdmin");
+      const { data } = await axiosSecure.get("/allClassesForAdmin");
       return data;
     },
   });

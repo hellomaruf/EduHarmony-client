@@ -2,10 +2,11 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Services/AuthProvider";
-
+console.log(import.meta.env.VITE_API_URL);
 const axiosSecure = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true,
+  // baseURL: import.meta.env.VITE_API_URL,
+  baseURL: "http://localhost:3000",
+  // withCredentials: true,
 });
 
 const useAxiosSecure = () => {
@@ -16,6 +17,7 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.request.use(
       function (config) {
         const token = localStorage.getItem("access-token");
+        console.log(token);
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }

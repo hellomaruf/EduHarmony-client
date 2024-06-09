@@ -16,13 +16,16 @@ function Footer() {
                   <a className=" text-3xl font-semibold text-white">
                     EduHarmony
                   </a>
-                  <p className="tracking-[8px] text-sm  text-gray-100">Microlearning</p>
+                  <p className="tracking-[8px] text-sm  text-gray-100">
+                    Microlearning
+                  </p>
                 </div>
               </div>
 
               <p className="mt-4 max-w-xs text-white text-base">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse
-                non cupiditate quae nam molestias.
+                Welcome to [EduHanMony], the ultimate platform for online
+                learning! Our mission is to provide accessible, high-quality
+                education to learners around the globe.
               </p>
 
               <ul className="mt-8 flex gap-6">
