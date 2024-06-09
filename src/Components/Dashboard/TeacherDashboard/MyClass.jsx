@@ -8,6 +8,8 @@ import Spinner from "../../../Utils/Spinner";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Default from "../../Default";
+import axios from "axios";
+
 
 function MyClass() {
   //   const { classes } = useClasses();
@@ -24,8 +26,8 @@ function MyClass() {
     enabled: !loading && !!user?.email,
 
     queryFn: async () => {
-      const { data } = await axiosSecure.get(
-        `/myClasses/${user?.email}?page=${currentPage}&size=${itemsPerPage}`
+      const { data } = await axios.get(
+        `http://localhost:3000/myClasses/${user?.email}?page=${currentPage}&size=${itemsPerPage}`
       );
       return data;
     },
@@ -75,7 +77,7 @@ function MyClass() {
       setCurrentPage(currentPage + 1);
     }
   };
-console.log(classes?.length);
+  console.log(classes?.length);
   return (
     <div>
       <div className="text-3xl mb-8 font-semibold mx-4">

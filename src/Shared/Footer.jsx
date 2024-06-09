@@ -10,9 +10,14 @@ function Footer() {
         <div className="mx-auto  space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div>
-              <div className="flex gap-3">
-                <i className="ri-graduation-cap-fill text-3xl text-white"></i>
-                <a className=" text-3xl font-semibold text-white">EduHarmony</a>
+              <div className="flex items-center gap-3 mb-7">
+                <i className="ri-graduation-cap-fill text-4xl text-white"></i>
+                <div>
+                  <a className=" text-3xl font-semibold text-white">
+                    EduHarmony
+                  </a>
+                  <p className="tracking-[8px] text-sm  text-gray-100">Microlearning</p>
+                </div>
               </div>
 
               <p className="mt-4 max-w-xs text-white text-base">
