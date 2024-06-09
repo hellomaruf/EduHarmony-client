@@ -140,7 +140,6 @@ function TeacherRequest() {
                     <th className="flex font-normal ">
                       <span
                         className={
-                        
                           item?.status === "pending"
                             ? "badge badge-warning text-white"
                             : item?.status === "accepted"
@@ -157,7 +156,10 @@ function TeacherRequest() {
                   <td>
                     <th className="flex font-normal ">
                       <button
-                        disabled={item?.role === "teacher"}
+                        disabled={
+                          item?.status === "accepted" ||
+                          item?.status === "reject"
+                        }
                         onClick={() =>
                           handleTeacherApproved(item?.email, item?._id)
                         }
@@ -170,7 +172,10 @@ function TeacherRequest() {
                   <td>
                     <th className="flex font-normal ">
                       <button
-                        disabled={item?.role === "teacher"}
+                        disabled={
+                          item?.status === "accepted" ||
+                          item?.status === "reject"
+                        }
                         onClick={() => handleTeacherReject(item?._id)}
                         className="btn btn-sm rounded-full bg-red-100 text-red-600"
                       >
