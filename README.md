@@ -43,6 +43,18 @@ Welcome to **EduHarmony**! EduHarmony is an online class website designed to pro
 10. **Create Assignment**
     - Clicking the create button will open a modal for the assignment. There, students can add assignments for different classes.
 
+## Technologies Used
+
+- **JavaScript (ES6+):** Core programming language for interactivity.
+- **React.js:** A JavaScript library for building user interfaces.
+- **Tailwind CSS:** A utility-first CSS framework for styling.
+- **Node.js:** Server-side JavaScript environment.
+- **Express.js:** A web application framework for Node.js.
+- **MongoDB:** A NoSQL database for storing application data.
+- **npm:** Node package manager to manage dependencies.
+- **Git & GitHub:** Version control and repository hosting.
+- **Vercel:** Deployment platform for frontend and serverless functions.
+
 ## Getting Started
 
 1. **Sign Up:**
