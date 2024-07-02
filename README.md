@@ -60,8 +60,8 @@ Join millions of learners who have already transformed their lives with EduHarmo
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/username/my-react-app.git
-    cd my-react-app
+    git clone (https://github.com/hellomaruf/EduHarmony-client.git)
+    cd EduHarmony-client
     ```
 
 2. **Install dependencies:**
