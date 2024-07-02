@@ -54,3 +54,26 @@ Welcome to **EduHarmony**! EduHarmony is an online class website designed to pro
 If you have any questions or need assistance, please contact our support team at support@eduharmony.com. We are here to help you every step of the way.
 
 Join millions of learners who have already transformed their lives with EduHarmony. Start your learning journey today and unlock your full potential!
+
+## Installation
+
+1. **Clone the repository:**
+
+    ```sh
+    git clone https://github.com/username/my-react-app.git
+    cd my-react-app
+    ```
+
+2. **Install dependencies:**
+
+    ```sh
+    npm install
+    ```
+
+## Usage
+
+1. **Start the development server:**
+
+    ```sh
+    npm start
+    ```
